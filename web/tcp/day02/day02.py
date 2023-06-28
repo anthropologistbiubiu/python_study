@@ -14,6 +14,6 @@ for line in message:
     sockobj.send(line)
     #从服务端接收到的数据，上限为1k
     data = sockobj.recv(1024)
-    print 'Client received:', repr(data)
+    print ('Client received:', repr(data))
 #关闭套接字
 sockobj.close( )
