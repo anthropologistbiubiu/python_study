@@ -40,12 +40,43 @@ class ConcreteProduct2(Product):
 def client_code(creator: Creator) -> None:
     print(f"Client: I'm not aware of the creator's class, but it still works.\n"
           f"{creator.some_operation()}", end="")
+    print('\n')
 
+# 传入不同的属性 然后根据属性创建不通的类对象,不同的类对象可以调用相同的方法
+class Gun:
+    def Print(self):
+        pass
+class ak47(Gun):
+    def __init__(self,name):
+        self.name = name
+    def Print(self):
+        print('the gun is {}'.format(self.name))
 
-if __name__ == "__main__":
+class ak48(Gun):
+    def __init__(self,name):
+        self.name = name
+    def Print(self):
+        print('the gun is {}'.format(self.name))
+
+def createGun(name)->Gun:
+    if name == "ak47":
+        return ak47(name)
+    elif name == "ak48":
+        return ak48(name)
+
+def client(Gun):
+    Gun.Print()
+
+def test():
+    client(createGun("ak47"))
+    client(createGun("ak48"))
+
+def main():
     print("App: Launched with the ConcreteCreator1.")
     client_code(ConcreteCreator1())
-    print("\n")
-
-    print("App: Launched with the ConcreteCreator2.\n")
+    print("App: Launched with the ConcreteCreator2.")
     client_code(ConcreteCreator2())
+
+if __name__ == "__main__":
+    # main()
+    test()
