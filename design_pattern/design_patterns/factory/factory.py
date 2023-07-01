@@ -45,6 +45,7 @@ def client_code(creator: Creator) -> None:
 # 传入不同的属性 然后根据属性创建不通的类对象,不同的类对象可以调用相同的方法
 class Gun:
     def Print(self):
+        print('hello world')
         pass
 class ak47(Gun):
     def __init__(self,name):
@@ -55,8 +56,8 @@ class ak47(Gun):
 class ak48(Gun):
     def __init__(self,name):
         self.name = name
-    def Print(self):
-        print('the gun is {}'.format(self.name))
+    # def Print(self):
+        #print('the gun is {}'.format(self.name))
 
 def createGun(name)->Gun:
     if name == "ak47":
