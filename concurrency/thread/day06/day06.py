@@ -1,5 +1,7 @@
 from queue import Queue
 import random, threading, time
+import multiprocessing
+import os
 
 
 # 生产者类
@@ -23,14 +25,12 @@ class Consumer(threading.Thread):
         self.queue = queue
 
     def run(self):
-        if self.queue.empty():
-            return
-        else:
+        #if self.queue.empty():
+            #return
+        #else:
             for i in range(1, 5):
                 val = self.queue.get()
-                print("{} is consuming {} in the queue.".format(val,i))
-            # print("%s finished!" % self.getName())
-
+                print("{} is consumingin the queue.".format(val))
 
 def main():
     queue = Queue()
@@ -39,7 +39,7 @@ def main():
     consumer = Consumer('Consumer', queue,lock)
 
     producer.start()
-    time.sleep(5)
+    # time.sleep(5)
     consumer.start()
 
     producer.join()
@@ -47,5 +47,9 @@ def main():
     print('All threads finished!')
 
 
+
 if __name__ == '__main__':
+    num_cores = 1
+    multiprocessing.set_start_method("forkserver")
+    os.environ["OMP_NUM_THREADS"] = str(num_cores)
     main()
