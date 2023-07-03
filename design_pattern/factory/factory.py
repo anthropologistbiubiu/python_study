@@ -79,5 +79,5 @@ def main():
     client_code(ConcreteCreator2())
 
 if __name__ == "__main__":
-    # main()
+    main()
     test()
