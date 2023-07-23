@@ -13,8 +13,13 @@ def r_open():
 
 def rw_open():
     f = open("myfile.txt", "r+")
-    n = f.write("hello world3\n")
-    print(n)
+    # f.write("hello world3\n")
+    # f.write("hello world4\n")
+    try:
+        strLines = f.readlines()
+        print(strLines)
+    except IOError as e:
+        print(e)
 def w_open():
     try:
         f = open("myfile.txt", "w")
@@ -27,9 +32,11 @@ def w_open():
 def wr_open():
     f = open("myfile.txt", "w+")
     try:
+        #f.write("good study")
+        # f.seek(0)
         str = f.read()
         print(str)
-    except IOError as e:
+    except IOError as e: # 这种模式可以打开文件进行读和写。文本被覆盖并从现有文件中删除。文件的开始是句柄所在的位置。
         print(e)
 
 
@@ -51,9 +58,9 @@ def aw_open():
         f.close()
         f1 = open("myfile.txt","a+")
         content = f1.readline()  # 因为每次指针的偏移量都在最后一个职位
-        print(content)
+        print(content) # 句柄被设置在文件的末尾。新写的文本将被添加到最后，跟在先前写的数据后面。
     except IOError as e:
         print(e)
 
 if __name__ == '__main__':
-    aw_open()
+    rw_open()
