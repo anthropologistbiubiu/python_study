@@ -14,7 +14,6 @@ def connect_mysql():
         database='test',  # 数据库的名称
     )
     cursor = db.cursor()
-    print(cursor)
     cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
 
     # 创建数据表SQL语句
