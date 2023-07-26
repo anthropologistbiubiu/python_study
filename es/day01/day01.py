@@ -9,8 +9,8 @@ def main():
     try:
         # es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200}], timeout=3600)
         es = Elasticsearch([{"host":"localhost","port":9200,"scheme":"http"}])
-        con = es.ping()
-        print(con)
+        # con = es.ping()
+        # print(con)
     except Exception as e:
         print("Exception",e)
         return
