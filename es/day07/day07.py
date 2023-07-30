@@ -3,12 +3,6 @@
 # 明天早上完成 es 的搜索，精准匹配，模糊匹配。
 
 '''
-查询数据
-查询结果返回参数各字段含义
-最直接的查询方法
-用body指定条件
-模糊查询
-term 精确查询
 multi_match，多字段查询
 prefix，前缀查询
 wildcard，通配符查询
@@ -25,7 +19,7 @@ def body_search():
        'from' :0,
         'size' :10
     }
-    print(es.search(index='my_index',body=body))
+    print(es.search(index='my_index1',body=body))
 
 
 def filter():
