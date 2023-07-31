@@ -1,10 +1,7 @@
-
-
-
+import pymongo
 
 
 def establish():
-    import pymongo
     # 连接到MongoDB服务器
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     # 指定数据库
