@@ -61,7 +61,19 @@ print(mylist.append('e'),mylist)
 # extend 操作
 print(mylist.extend('f'),mylist)
 
+# 删除操作
 
+# print(mylist.pop(1),mylist)
+# print(mylist.remove('a'),mylist)
+# print(mylist.clear(),mylist)
+
+# 查找元素
+print(mylist.index('a'))
+print(mylist.count('a'))
+
+# 排序和反转
+print(mylist.sort(),mylist)
+print(mylist.reverse(),mylist)
 
 
 
