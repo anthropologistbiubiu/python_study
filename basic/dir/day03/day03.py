@@ -75,6 +75,16 @@ print(mylist.count('a'))
 print(mylist.sort(),mylist)
 print(mylist.reverse(),mylist)
 
+# 元组操作
+# 创建元组
+my_tuple = (1,2,3,4)
+# 获取子元组操作
+print(my_tuple[1:3])
+# 合并元组
+print(('a','b','c')+my_tuple)
+# 复制元组
+print(('c','d','e','f')*3)
+
 
 
 
