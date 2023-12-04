@@ -84,6 +84,7 @@ print(my_tuple[1:3])
 print(('a','b','c')+my_tuple)
 # 复制元组
 print(('c','d','e','f')*3)
+# 查找操作
 
 
 
