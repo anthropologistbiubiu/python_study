@@ -21,13 +21,19 @@ class LinkList:
 
     def delete(self,data):
         cur_node = self.head
+        # 单独处理头节点
         if cur_node.data == data:
             self.head = self.head.next
+        # 处理非头节点
         while cur_node.next.data != data:
             cur_node.next = cur_node.next.next
         if cur_node is None:
             return
         cur_node.next = cur_node.next.next
-
+    def didsplay(self):
+       cur = self.head
+       while cur:
+           print(cur.data)
+           cur = cur.next
 
 
