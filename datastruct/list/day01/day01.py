@@ -20,14 +20,14 @@ class LinkList:
         last_node.next = new_node # 尾插法
 
     def delete(self,data):
-        last_node = self.head
-        if last_node.data == data:
+        cur_node = self.head
+        if cur_node.data == data:
             self.head = self.head.next
-        while last_node.next.data != data:
-            last_node = last_node.next
-        if last_node is None:
+        while cur_node.next.data != data:
+            cur_node.next = cur_node.next.next
+        if cur_node is None:
             return
-        last_node.next = last_node.next.next
+        cur_node.next = cur_node.next.next
 
 
 
