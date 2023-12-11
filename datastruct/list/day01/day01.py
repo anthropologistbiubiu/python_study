@@ -32,6 +32,14 @@ class LinkList:
         if cur_node.next is None:
             return
         cur_node.next = cur_node.next.next
+    def update(self):
+        pass
+    def index(self):
+        pass
+    def reverse(self):
+        pass
+    def sort(self):
+        pass
     def didsplay(self):
        cur = self.head
        while cur:
