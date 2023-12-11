@@ -36,26 +36,30 @@ class LinkList:
             return
         cur_node.next = cur_node.next.next
         self.capacity+=1
-    def update(self):
+    def update(self,index,new_data):
         cur_node = self.head
         if cur_node is None:
-            return
+            return None
+        if index < 0 or index > self.capacity:
+            return None
+        i = 0
+        while i <  index:
+            cur_node = cur_node.next
+            i+=1
+        cur_node.data = new_data
 
-        pass
     def index(self,index):
         cur_node = self.head
         if cur_node is None:
-            return
+            return None
         if index >= self.capacity or index < 0:
-            return
-        else:
-            i = 0
-            while i < index:
-                cur_node= cur_node.next
-                i+=1
-            return cur_node.data
-        pass
-    def reverse(self):
+            return None
+        i = 0
+        while i < index:
+            cur_node= cur_node.next
+            i+=1
+        return cur_node.data
+    def reverse(self): # 反转链表
         pass
     def sort(self):
         pass
@@ -84,3 +88,6 @@ mylist.delete(3)
 mylist.didsplay()
 print('mylist.index')
 print(mylist.index(0))
+print('mylist.update')
+mylist.update(0,100)
+mylist.didsplay()
