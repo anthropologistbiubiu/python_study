@@ -28,7 +28,7 @@ class LinkList:
             self.head = self.head.next
         # 处理非头节点
         while cur_node.next and cur_node.next.data != data:
-            cur_node.next = cur_node.next.next
+            cur_node = cur_node.next
         if cur_node.next is None:
             return
         cur_node.next = cur_node.next.next
@@ -53,9 +53,15 @@ mylist.append(2)
 mylist.append(3)
 mylist.append(4)
 mylist.didsplay()
+
 mylist.delete(1)
-mylist.delete(4)
 print("delete 1")
+mylist.didsplay()
+mylist.delete(4)
+print("delete 4")
+mylist.didsplay()
+print("delete 3")
+mylist.delete(3)
 mylist.didsplay()
 
 
