@@ -1,53 +1,56 @@
 # 写一个不带头节点的单链表的增删改查操作
 class Node:
-    def __init__(self,data=None):
-       self.data = data
-       self.next = None
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
 
 class LinkList:
     def __init__(self):
         self.head = None
         self.capacity = 0
+
     # 插入节点
-    def append(self,data):
+    def append(self, data):
         new_node = Node(data)
         if self.head is None:
-           self.head = new_node
-           return
+            self.head = new_node
+            return
         last_node = self.head
         while last_node.next:
             last_node = last_node.next
-        last_node.next = new_node # 尾插法
-        self.capacity+=1
+        last_node.next = new_node  # 尾插法
+        self.capacity += 1
 
-    def delete(self,data):
+    def delete(self, data):
         cur_node = self.head
         if cur_node is None:
             return
         # 单独处理头节点
         if cur_node.data == data:
             self.head = self.head.next
-            self.capacity+=1
+            self.capacity += 1
         # 处理非头节点
         while cur_node.next and cur_node.next.data != data:
             cur_node = cur_node.next
         if cur_node.next is None:
             return
         cur_node.next = cur_node.next.next
-        self.capacity+=1
-    def update(self,index,new_data):
+        self.capacity += 1
+
+    def update(self, index, new_data):
         cur_node = self.head
         if cur_node is None:
             return None
         if index < 0 or index > self.capacity:
             return None
         i = 0
-        while i <  index:
+        while i < index:
             cur_node = cur_node.next
-            i+=1
+            i += 1
         cur_node.data = new_data
 
-    def index(self,index):
+    def index(self, index):
         cur_node = self.head
         if cur_node is None:
             return None
@@ -55,10 +58,11 @@ class LinkList:
             return None
         i = 0
         while i < index:
-            cur_node= cur_node.next
-            i+=1
+            cur_node = cur_node.next
+            i += 1
         return cur_node.data
-    def reverse(self): # 反转链表
+
+    def reverse(self):  # 反转链表
         if self.head is None:
             return
         cur_node = self.head
@@ -69,19 +73,24 @@ class LinkList:
             pre = cur_node
             cur_node = tem_node
         self.head = pre
-        pass
+
     def sort(self):
-
-        pass
+        cur = self.head
+        if cur is None or self.capacity <= 1:
+            return
+        while cur:
+            pre = self.head
+            if pre and pre.data > pre.next.data:
+                pre.data, pre.next.data = pre.next.data, pre.data
+            pre = pre.next
     def didsplay(self):
-       cur = self.head
-       while cur:
-           if cur.next == None:
-              print(cur.data)
-              return
-           print(cur.data,end='->')
-           cur = cur.next
-
+        cur = self.head
+        while cur:
+            if cur.next == None:
+                print(cur.data)
+                return
+            print(cur.data, end='->')
+            cur = cur.next
 
 
 mylist = LinkList()
