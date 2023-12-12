@@ -63,20 +63,25 @@ class LinkList:
             return
         cur_node = self.head
         pre = None
-        while cur_node:
+        while cur_node is not None:
             tem_node = cur_node.next
             cur_node.next = pre
             pre = cur_node
-            cur_node = tem_node.next
+            cur_node = tem_node
         self.head = pre
         pass
     def sort(self):
+
         pass
     def didsplay(self):
        cur = self.head
        while cur:
-           print(cur.data)
+           if cur.next == None:
+              print(cur.data)
+              return
+           print(cur.data,end='->')
            cur = cur.next
+
 
 
 mylist = LinkList()
@@ -85,18 +90,19 @@ mylist.append(2)
 mylist.append(3)
 mylist.append(4)
 mylist.didsplay()
-
-mylist.delete(1)
-print("delete 1")
-mylist.didsplay()
-mylist.delete(4)
-print("delete 4")
-mylist.didsplay()
-print("delete 3")
-mylist.delete(3)
-mylist.didsplay()
-print('mylist.index')
-print(mylist.index(0))
-print('mylist.update')
-mylist.update(0,100)
+# mylist.delete(1)
+# print("delete 1")
+# mylist.didsplay()
+# mylist.delete(4)
+# print("delete 4")
+# mylist.didsplay()
+# print("delete 3")
+# mylist.delete(3)
+# mylist.didsplay()
+# print('mylist.index')
+# print(mylist.index(0))
+# print('mylist.update')
+# mylist.update(0,100)
+print('mylist.reverse')
+mylist.reverse()
 mylist.didsplay()
