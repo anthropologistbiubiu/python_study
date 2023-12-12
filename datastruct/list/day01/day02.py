@@ -35,7 +35,6 @@ class LinkedList:
 
         if current_node is None:
             return
-
         prev_node.next_node = current_node.next_node
         current_node = None
 

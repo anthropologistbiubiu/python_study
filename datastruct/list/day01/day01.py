@@ -1,5 +1,4 @@
-
-# 写一个链表的增删改查操作
+# 写一个不带头节点的单链表的增删改查操作
 class Node:
     def __init__(self,data=None):
        self.data = data
@@ -60,6 +59,16 @@ class LinkList:
             i+=1
         return cur_node.data
     def reverse(self): # 反转链表
+        if self.head is None:
+            return
+        cur_node = self.head
+        pre = None
+        while cur_node:
+            tem_node = cur_node.next
+            cur_node.next = pre
+            pre = cur_node
+            cur_node = tem_node.next
+        self.head = pre
         pass
     def sort(self):
         pass
