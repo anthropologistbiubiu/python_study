@@ -83,6 +83,7 @@ class LinkList:
             if pre and pre.data > pre.next.data:
                 pre.data, pre.next.data = pre.next.data, pre.data
             pre = pre.next
+
     def didsplay(self):
         cur = self.head
         while cur:
