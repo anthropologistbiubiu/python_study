@@ -86,10 +86,9 @@ class LinkList:
             while left.next != right:
                 if left.data > left.next.data:
                     left.data,left.next.data = left.next.data,left.data
-                    left = left.next
+                left = left.next
             if left.data > left.next.data:
                 left.data, left.next.data = left.next.data, left.data
-                left = left.next
             right = left
             left = self.head
 
