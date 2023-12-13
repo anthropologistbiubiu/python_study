@@ -75,14 +75,23 @@ class LinkList:
         self.head = pre
 
     def sort(self):
-        cur = self.head
-        if cur is None or self.capacity <= 1:
+        left = self.head
+        if self.head is None or self.capacity <= 1:
             return
-        while cur:
-            pre = self.head
-            if pre and pre.data > pre.next.data:
-                pre.data, pre.next.data = pre.next.data, pre.data
-            pre = pre.next
+        while left.next:
+            left = left.next
+        right = left
+        left = self.head
+        while right != self.head:
+            while left.next != right:
+                if left.data > left.next.data:
+                    left.data,left.next.data = left.next.data,left.data
+                    left = left.next
+            if left.data > left.next.data:
+                left.data, left.next.data = left.next.data, left.data
+                left = left.next
+            right = left
+            left = self.head
 
     def didsplay(self):
         cur = self.head
@@ -116,3 +125,20 @@ mylist.didsplay()
 print('mylist.reverse')
 mylist.reverse()
 mylist.didsplay()
+mylist.sort()
+print('after mylist.sort')
+mylist.didsplay()
+mylist.append(0)
+mylist.append(9)
+mylist.append(8)
+mylist.append(23)
+mylist.append(13)
+mylist.append(27)
+mylist.append(7)
+mylist.didsplay()
+print('after mylist.sort')
+mylist.sort()
+mylist.didsplay()
+
+
+
