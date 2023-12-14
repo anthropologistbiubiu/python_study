@@ -13,16 +13,29 @@ class Node:
 class BinaryTree:
     def __init__(self):
         self.root = None
-    def insert(self,data):
-        pass
-    def _insert(self):
-        pass
+    def insert(self,key):
+        self.root = self._insert(self.root,key)
+    def _insert(self,root,key):
+        if root is None:
+            root = None(key)
+        elif root.data > key:
+           root.left = self._insert(root.left,key)
+        else:
+            root.right = self._insert(root.rigt, key)
+        return root
     def pre_travels(self):
-        pass
-    def inorder_travels(self):
-        pass
-    def post_orders_travels(self):
-        pass
+        if self.root is None:
+            print(None)
+        self._pre_treavels(self.root)
+    def _pre_reavels(self,root):
+        print(root.data)
+        if root.left:
+            self._pre_reavels(root.left)
+        if root.right:
+            self._pre_reavels(root.rigt)
 
-
+    def update(self):
+        pass
+    def delete(self):
+        pass
 
