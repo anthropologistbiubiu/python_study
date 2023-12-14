@@ -1,9 +1,4 @@
 
-
-
-# 这里参考c++ 写二叉树的过程来写好二叉树的数据结构
-
-
 class Node:
     def __init__(self,data=None):
         self.data = data
@@ -33,13 +28,42 @@ class BinaryTree:
         print(root.data)
         self._preorder_traversal(root.left)
         self._preorder_traversal(root.right)
+    def inorder_traversal(self):
+        if self.root is None:
+            print(None)
+        self._inorder_traversal(self.root)
+    def _inorder_traversal(self,root):
+        if root is None:
+            return
+        self._inorder_traversal(root.left)
+        print(root.data)
+        self._inorder_traversal(root.right)
+    def postorder_traversal(self):
+        self._postorder_traversal(self.root)
+    def _postorder_traversal(self,root):
+        if root is None:
+            return
+        self._postorder_traversal(root.left)
+        self._postorder_traversal(root.right)
+        print(root.data)
+
     def update(self):
         pass
     def delete(self):
         pass
 
 mytree = BinaryTree()
-mytree.insert(1)
 mytree.insert(2)
+mytree.insert(1)
+mytree.insert(4)
+mytree.insert(5)
 mytree.insert(3)
+mytree.insert(18)
+mytree.insert(7)
+mytree.insert(9)
+print('preorder_traversal')
 mytree.preorder_traversal()
+print('inorder_traversal')
+mytree.inorder_traversal()
+print('postorder_traversal')
+mytree.postorder_traversal()
