@@ -17,25 +17,29 @@ class BinaryTree:
         self.root = self._insert(self.root,key)
     def _insert(self,root,key):
         if root is None:
-            root = None(key)
+            root = Node(key)
         elif root.data > key:
            root.left = self._insert(root.left,key)
-        else:
-            root.right = self._insert(root.rigt, key)
+        elif root.data < key:
+            root.right = self._insert(root.right,key)
         return root
-    def pre_travels(self):
+    def preorder_traversal(self):
         if self.root is None:
             print(None)
-        self._pre_treavels(self.root)
-    def _pre_reavels(self,root):
+        self._preorder_traversal(self.root)
+    def _preorder_traversal(self,root):
+        if root is None:
+            return
         print(root.data)
-        if root.left:
-            self._pre_reavels(root.left)
-        if root.right:
-            self._pre_reavels(root.rigt)
-
+        self._preorder_traversal(root.left)
+        self._preorder_traversal(root.right)
     def update(self):
         pass
     def delete(self):
         pass
 
+mytree = BinaryTree()
+mytree.insert(1)
+mytree.insert(2)
+mytree.insert(3)
+mytree.preorder_traversal()
