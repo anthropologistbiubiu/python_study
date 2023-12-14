@@ -13,7 +13,9 @@ class Node:
 class BinaryTree:
     def __init__(self):
         self.root = None
-    def insert(self):
+    def insert(self,data):
+        pass
+    def _insert(self):
         pass
     def pre_travels(self):
         pass
