@@ -4,12 +4,21 @@ class DisJoinSet:
         self.parent = [i for i in range(n)]
         self.rank = [0] * n
     def find(self,i):
-        print(i)
-        pass
+        if self.parent[i] ==i:
+            return i
+        self.find(self.parent[i])
     def union(self,i,j):
-        print(i,j)
-        pass
+        root_i = self.find(i)
+        root_j = self.find(j)
+        if self.rank[root_i] > self.rank[root_j]:
+            self.parent[root_j] = root_i
+        elif self.rank[root_i] < self.rank[root_j]:
+            self.parent[root_i] = root_j
+        else:
+            self.parent[root_j] = root_i
+            self.rank[root_i] += 1
     def display(self):   # 打印不同的集合，打印不同集合的连通性
+        # 怎么打印完全所有的集合
         pass
 
 
