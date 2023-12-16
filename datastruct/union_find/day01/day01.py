@@ -3,11 +3,13 @@ class DisJoinSet:
     def __init__(self,n):
         self.parent = [i for i in range(n)]
         self.rank = [0] * n
-    def find(self):
+    def find(self,i):
+        print(i)
         pass
-    def union(self):
+    def union(self,i,j):
+        print(i,j)
         pass
-    def display(self):
+    def display(self):   # 打印不同的集合，打印不同集合的连通性
         pass
 
 
