@@ -10,6 +10,9 @@ class DisJoinSet:
     def union(self,i,j):
         root_i = self.find(i)
         root_j = self.find(j)
+        # 需要添加一个防止重复合并带来的bug
+        if root_j == root_j:
+            return
         if self.rank[root_i] > self.rank[root_j]:
             self.parent[root_j] = root_i
         elif self.rank[root_i] < self.rank[root_j]:
