@@ -2,11 +2,11 @@
 class DisJoinSet:
     def __init__(self,n):
         self.parent = [i for i in range(n)]
-        self.rank = [0] * n
+        self.rank = [1] * n
     def find(self,i):
-        if self.parent[i] ==i:
+        if self.parent[i] == i:
             return i
-        self.find(self.parent[i])
+        return self.find(self.parent[i])
     def union(self,i,j):
         root_i = self.find(i)
         root_j = self.find(j)
@@ -23,10 +23,30 @@ class DisJoinSet:
 
 
 
+union_set = DisJoinSet(10)
+union_set.union(1,2)
+union_set.union(2,3)
 
-if __name__ == '__main__':
-    for i in range (5):
-        print(i)
+print(union_set.find(2))
+print(union_set.find(3))
+
+union_set.union(4,5)
+union_set.union(4,6)
+
+print(union_set.find(5))
+print(union_set.find(6))
+
+print(union_set.find(1) == union_set.find(4))
+
+union_set.union(3,6)
+
+print(union_set.parent)
+print(union_set.rank)
+
+print(union_set.find(2)==union_set.find(5))
+
+
+
 
 # 集合的查找与合并,打印。
 # 如何初始化一个并查集
