@@ -45,11 +45,7 @@ union_set.union(3,6)
 
 print(union_set.parent)
 print(union_set.rank)
-
 print(union_set.find(2)==union_set.find(5))
-
-
-
 
 # 集合的查找与合并,打印。
 # 如何初始化一个并查集
