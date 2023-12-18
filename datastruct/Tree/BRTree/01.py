@@ -81,18 +81,18 @@ class RedBlackTree:
         while z.parent.color == "RED":
             if z.parent == z.parent.parent.left:
                 y = z.parent.parent.right
-                if y.color == "RED":
-                    z.parent.color = "BLACK"
-                    y.color = "BLACK"
-                    z.parent.parent.color = "RED"
-                    z = z.parent.parent
-                else:
-                    if z == z.parent.right:
+                if y.color == "RED":   # 叔父节点是红色
+                    z.parent.color = "BLACK"  # 父节点设为红色
+                    y.color = "BLACK"  # 叔父节设为黑色
+                    z.parent.parent.color = "RED" # 祖父节点设为红色
+                    z = z.parent.parent # 当前节点设为祖父节点 ,检查父节点
+                else:                         # 叔父节点为黑色
+                    if z == z.parent.right: # 当前节点是父节点的右节点
                         z = z.parent
-                        self.left_rotate(z)
+                        self.left_rotate(z)   # 对新节点的父节点进行左旋
                     z.parent.color = "BLACK"
                     z.parent.parent.color = "RED"
-                    self.right_rotate(z.parent.parent)
+                    self.right_rotate(z.parent.parent) # 右旋，以当前节点的祖父节点
             else:
                 y = z.parent.parent.left
                 if y.color == "RED":
