@@ -204,8 +204,22 @@ class RedBlackTree:
             self.inorder_traversal(node.right)
 
 # 创建红黑树并插入节点
+def print_tree_structure(tree):
+    print("Red-Black Tree Structure:")
+    print("----------------------------")
+    tree.inorder_traversal(tree.root)
+    print("----------------------------")
+
+# 调用打印函数
+
 rb_tree = RedBlackTree()
 keys_to_insert = [7, 3, 18, 10, 22, 8, 11, 26]
 for key in keys_to_insert:
     rb_tree.insert(key)
 
+# 打印初始红黑树结构
+print_tree_structure(rb_tree)
+
+# 删除节点并打印每一步的红黑树结构
+rb_tree.delete_node(18)
+print_tree_structure(rb_tree)
