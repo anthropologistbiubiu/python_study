@@ -5,5 +5,11 @@ class MinHeap:
     def push(self, data):
         pass
 
-    def pop(self, data):
+    def pop(self):
+        pass
+
+    def _heapify_up(self):
+        pass
+
+    def _heapify_down(self):
         pass
