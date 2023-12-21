@@ -2,7 +2,7 @@ class MinHeap:
     def __init__(self):
         self.heap = []
 
-    def push(self, data):
+    def push(self, item):
         pass
 
     def pop(self):
@@ -12,4 +12,6 @@ class MinHeap:
         pass
 
     def _heapify_down(self):
+        pass
+    def _swap(self,i,j):
         pass
