@@ -3,7 +3,8 @@ class MinHeap:
         self.heap = []
 
     def push(self, item):
-        pass
+        self.heap.append(item)
+        self._heapify_up()
 
     def pop(self):
         pass
