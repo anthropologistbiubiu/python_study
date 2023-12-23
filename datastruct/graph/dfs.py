@@ -22,6 +22,8 @@ def dfs(graph,start,visited):
        if item not in visited:
            dfs(graph,item,visited)
 
+
 if __name__ == '__main__':
     visited = set()
     dfs(graph, 'A',visited)
+    print(visited)
