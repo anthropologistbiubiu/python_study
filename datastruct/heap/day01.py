@@ -12,8 +12,9 @@ class MinHeap:
         if len(self.heap) == 0:
             return None
         top_item = self.heap[0]
-        self._heapify_down()
+        self._swap(0,self.size-1)
         self.size -= 1
+        self._heapify_down()
         return top_item
 
     def _heapify_up(self):
@@ -30,14 +31,14 @@ class MinHeap:
     def _heapify_down(self):
         last_index = len(self.heap) -1
         cur_index = 0
-        while cur_index*2+1 < len(self.heap)-1:
+        while cur_index*2+1 < self.size:
             left_index = cur_index*2 +1
             right_index = cur_index*2 +2
             print(left_index,right_index)
-            if right_index < len(self.heap)-1 and self.heap[right_index] < self.heap[left_index]:
+            if right_index < self.size and self.heap[right_index] < self.heap[left_index]:
                 min_index = right_index
             else:
-                min_index = right_index
+                min_index = left_index
             if self.heap[min_index] < self.heap[cur_index]:
                 self._swap(min_index,cur_index)
             cur_index = min_index
