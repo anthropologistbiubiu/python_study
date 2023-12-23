@@ -7,7 +7,11 @@ class MinHeap:
         self._heapify_up()
 
     def pop(self):
-        pass
+        if len(self.heap) == 0:
+            return None
+        top_item = self.heap[0]
+        self._heapify_down()
+        return top_item
 
     def _heapify_up(self):
         # 想清楚堆想上调整的过程中的思路
