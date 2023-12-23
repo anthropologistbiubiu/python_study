@@ -6,12 +6,14 @@ class MinHeap:
     def push(self, item):
         self.heap.append(item)
         self._heapify_up()
+        self.size +=1
 
     def pop(self):
         if len(self.heap) == 0:
             return None
         top_item = self.heap[0]
         self._heapify_down()
+        self.size -= 1
         return top_item
 
     def _heapify_up(self):
@@ -28,11 +30,12 @@ class MinHeap:
     def _heapify_down(self):
         last_index = len(self.heap) -1
         cur_index = 0
-        while cur_index < len(self.heap)-2:
+        while cur_index*2+1 < len(self.heap)-1:
             left_index = cur_index*2 +1
             right_index = cur_index*2 +2
-            if self.heap[left_index] < self.heap[right_index]:
-                min_index = left_index
+            print(left_index,right_index)
+            if right_index < len(self.heap)-1 and self.heap[right_index] < self.heap[left_index]:
+                min_index = right_index
             else:
                 min_index = right_index
             if self.heap[min_index] < self.heap[cur_index]:
@@ -43,7 +46,7 @@ class MinHeap:
         self.heap[i],self.heap[j] = self.heap[j],self.heap[i]
     def display(self):
         # 如何打印出堆的结构形状
-        print(self.heap)
+        print(self.heap[:self.size])
 
 
 myheap = MinHeap()
@@ -53,4 +56,5 @@ myheap.push(4)
 myheap.push(6)
 myheap.push(1)
 myheap.push(2)
+myheap.pop()
 myheap.display()
