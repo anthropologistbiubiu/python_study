@@ -1,4 +1,5 @@
 # 示例使用
+from collections import deque
 graph_with_weights = {
     'A': {'B': 1, 'C': 4},
     'B': {'A': 1, 'D': 2, 'E': 7},
@@ -20,20 +21,24 @@ graph_with_weights = {
 # 优化一下，使用更人性化的方式对这个距离进行记录
 def dijkstra(graph,start,distances):
     visited = set()
-    for current_node, weight in graph[start].item():
-        if current_node not in visited:
-            visited.add(current_node)
-            if weight > distances[current_node]:
-               continue
-            elif weight + distances[start] < distances[current_node]:
-                distances[current_node] = weight + distances[start]
-
+    queue = deque()
+    queue.append(start)
+    distances[start] = 0
+    while queue:
+        left = queue.popleft()
+        for current_node, weight in graph[left].items():
+            if current_node not in visited:
+                visited.add(current_node)
+                queue.append(current_node)
+                if weight > distances[current_node]:
+                    continue
+                elif weight + distances[left] < distances[current_node]:
+                    distances[current_node] = weight + distances[left]
 
 
 
 
 if __name__ == '__main__':
-   distance = dijkstra(graph_with_weights,'A')
-   print(distance)
-
-
+    distances ={node:float('infinity') for node in graph_with_weights}
+    dijkstra(graph_with_weights, 'A',distances)
+    print(distances)
