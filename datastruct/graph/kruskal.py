@@ -4,25 +4,27 @@
 
 # 想清楚解题思路
 # 1.
-def kruskal(graph,start):
-    edge = []
-    parent = []
+def kruskal(graph):
+    edges = []
+    parent = {}
     min_tree = []
     for key in graph:
         for neighbor,weight in  graph[key].items():
-           edge.append((key,neighbor,weight))
-    edge.sort()
-
+           edges.append((weight,key,neighbor))
+        parent[key] = key
+    edges.sort()
+    print(edges)
     def find(node):
-       if parent[node] != node:
-          return find(parent[node])
+        if parent[node] != node:
+            return find(parent[node])
+        return parent[node]
     def union(node1,node2):
        root1 = find(node1)
        root2 = find(node2)
        parent[root2] = root1
 
-    while edge:
-       node1,node2,weight = edge.pop()
+    for weight,node1,node2 in edges:
+       # weight,node1,node2 = min(edges)
        if find(node1) != find(node2):
            min_tree.append((node1,node2,weight))
            union(node1,node2)
@@ -36,4 +38,4 @@ graph = {
     'D': {'B': 1, 'C': 2}
 }
 if __name__ == '__main__':
-    print(kruskal(graph,'A'))
+    print(kruskal(graph))
