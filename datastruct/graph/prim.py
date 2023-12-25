@@ -1,4 +1,4 @@
- import heapq
+import heapq
 # 最小生成树算法
 
 # 给出prime 算法的
@@ -21,17 +21,27 @@ def prim(graph,start):
         heapq.heappush(heap,(start,neighbor,weight))
     heapq.heapify(heap)
     while heap:
-        current_node,node,min_weight = heapq.heappop(heap)
-        if node not in visited:
-            visited.add(node)
-            min_tree.append(())
+        cur,end,min_weight = heapq.heappop(heap)
+        if end not in visited:
+            visited.add(end)
+            min_tree.append((cur, end, min_weight))
+            for neighbor,weight in graph[end].items():
+                heapq.heappush(heap,(end,neighbor,weight))
+    return min_tree
 
 
 
 
+
+graph = {
+    'A': {'B': 2, 'C': 1},
+    'B': {'A': 2, 'C': 3, 'D': 1},
+    'C': {'A': 1, 'B': 3, 'D': 2},
+    'D': {'B': 1, 'C': 2}
+}
 
 if __name__ == '__main__':
-    prim()
+    print(prim(graph,'A'))
 
 
 
