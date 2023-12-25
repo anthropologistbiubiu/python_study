@@ -21,9 +21,10 @@ def bellman_ford(graph,start):
                 if distances[neighbor] > distances[node] + weight:
                     distances[neighbor] = distances[node] + weight
 
-    for neighbor, weight in graph[node].items():
-        if distances[neighbor] > distances[node] + weight:
-            return None
+    for node in graph:
+        for neighbor, weight in graph[node].items():
+            if distances[neighbor] > distances[node] + weight:
+                return None
     return distances
 
 
