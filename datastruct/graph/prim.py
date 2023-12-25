@@ -16,11 +16,17 @@ def prim(graph,start):
     visited = set()
     visited.add(start)
     heap = []
-    heapq.heapify(heap)
+    min_tree = []
     for neighbor ,weight in graph[start].items():
-        heapq.heappush(heap,heap)
+        heapq.heappush(heap,(start,neighbor,weight))
+    heapq.heapify(heap)
     while heap:
-        min_weight = heapq.heappop(heap)
+        current_node,node,min_weight = heapq.heappop(heap)
+        if node not in visited:
+            visited.add(node)
+            min_tree.append(())
+
+
 
 
 
