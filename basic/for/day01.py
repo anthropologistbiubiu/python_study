@@ -17,3 +17,9 @@ for item in {'sun','wei','ming'}:
 
 for item in {'name':'sunweiming','age':18}:
     print(item)
+
+# 文件对象的迭代
+with open('test.txt', 'r') as file:
+    for line in file:
+        print(line,end='')
+
