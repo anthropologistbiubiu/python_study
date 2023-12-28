@@ -27,6 +27,8 @@ my_queue.remove(2)
 print(my_queue)
 # 求长度
 print(len(my_queue))
+# 访问队列
+print(my_queue[0])
 # 清空队列
 print(my_queue.clear())
 
