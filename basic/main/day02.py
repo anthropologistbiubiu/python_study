@@ -1,5 +1,4 @@
 import sys
-
 sys.path.append('/Users/biubiu/Documents/python_study')
 from mymodule.my_addition import addtion
 

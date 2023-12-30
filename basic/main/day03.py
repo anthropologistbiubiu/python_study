@@ -1,9 +1,7 @@
-import sys
-sys.path.append('/Users/biubiu/Documents/python_study/basic/')
 
-from ..my_math import my_math
+from  my_module.my_math import my_math
 
 if __name__ == '__main__':
     tool = my_math.mathTool()
-    print(tool.sum([x for x in range(101)]))
-    print(tool.sub(1,2))
+    print(tool.sum(1,2,3))
+    print(tool.sub_my_module(2,3))
