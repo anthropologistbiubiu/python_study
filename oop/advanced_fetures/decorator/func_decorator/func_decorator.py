@@ -12,8 +12,6 @@ def args_decorator(count):
     return decorator
 
 
-
-
 @args_decorator(4)
 def say_hello(*args,**kwargs):
     for item in args:
