@@ -32,10 +32,29 @@ def user_payment(): # 用户使用userid 发起充值 接受一个post 表单请
 
 @app.route('/user/payout',methods=['POST'])
 def user_payout():     # 用户使用userid 提现 接收一个form-data 请求
-    pass
+    try:
+        uid = request.form.get('uid')
+        amount = request.form.get('amount')
+        print(f'{uid} {amount}')
+        response_data = {"status": "success", "message": "JSON data received successfully"}
+        return jsonify(response_data)
+    except Exception as e:
+        print(f'Exception {e}')
+        response_data = {"status": "error", "message": "An error occurred while processing the request"}
+        return jsonify(response_data)
 @app.route('/order/status',methods=['GET'])
 def get_order_status():  # 用户使用订单号查询订单状态 接收一个get 请求。
-    pass
+    try:
+        orderid = request.args.get('orderid')
+        print(f'orderid is {orderid}')
+        response_data = {"status": "success", "message": "JSON data received successfully"}
+        return jsonify(response_data)
+    except Exception as e:
+        print(f'Exception {e}')
+        response_data = {"status": "error", "message": "An error occurred while processing the request"}
+        return jsonify(response_data)
+
+
 def main():
     app.run(host='127.0.0.1',port=8081,debug=True)
 if __name__ == '__main__':
