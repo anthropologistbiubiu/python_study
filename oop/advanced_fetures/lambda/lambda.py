@@ -26,8 +26,6 @@ def operator(x,y,func):
     return func(x,y)
 
 
-
-
 if __name__ == '__main__':
     print(operator(1,2,add))
 

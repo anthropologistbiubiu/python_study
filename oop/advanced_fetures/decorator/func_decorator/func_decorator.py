@@ -2,13 +2,15 @@
 
 def args_decorator(count):
     def decorator(func):
-        def wrapper(*args,**kwargs):
+        def wrapper(*args, **kwargs):
             for i in range(count):
                 print(f'args_decorator {i}')
                 print('befer args_decorrator')
                 func(*args, **kwargs)
                 print('after args_decorrator')
+
         return wrapper
+
     return decorator
 
 

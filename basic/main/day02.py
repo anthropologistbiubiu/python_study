@@ -1,6 +1,7 @@
-# import sys
-# sys.path.append('/Users/biubiu/Documents/python_study')
+import sys
+sys.path.append('/Users/biubiu/Documents/python_study/mymodule')
 from mymodule.my_addition import addtion
+
 
 
 
