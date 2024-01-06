@@ -18,7 +18,7 @@ def get_req_with_params():
 # 3. 发送 POST 请求
 def post_req():
     post_url = 'https://queryapi.metagopayments.com/cashier/balance.ac'
-    form_data = {"account":"","custId":""}
+    form_data = {"account":"230803000026810232","custId":"23080300002681","orgNo":"8230801142","sign":"96d644376b0c9b22e1b25f023828cd55","version":"2.1"}
     response = requests.post(url=post_url)
     print(response.text)
 
