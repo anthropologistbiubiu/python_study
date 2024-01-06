@@ -19,12 +19,16 @@ def get_req_with_params():
 def post_req():
     post_url = 'https://queryapi.metagopayments.com/cashier/balance.ac'
     form_data = {"account":"230803000026810232","custId":"23080300002681","orgNo":"8230801142","sign":"96d644376b0c9b22e1b25f023828cd55","version":"2.1"}
-    response = requests.post(url=post_url)
+    response = requests.post(url=post_url,data=form_data,headers={'Content-type':'application/x-www-form-urlencoded'})
     print(response.text)
 
 def post_json_req():
-    pass
+    post_url = 'http://api.stimulatepay.com/account/payout/balance'
+    json_data = {"merchantId":"i2BByFRIxHrGhpA1","sign":"d1a15e2068a78f6890e0eff80903e08f"}
+    response = requests.post(post_url,json=json_data,headers={'Content-Type':'application/json'})
+    print(response.text)
+
 def main():
-    post_req()
+    post_json_req()
 if __name__ == '__main__':
     main()
