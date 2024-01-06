@@ -1,83 +1,17 @@
-from __future__ import annotations
-from abc import ABC, abstractmethod
-
-class Creator(ABC):
-    @abstractmethod
-    def factory_method(self):
-        pass
-    def some_operation(self) -> str:
-        product = self.factory_method()
-        result = f"Creator: The same creator's code has just worked with {product.operation()}"
-        return result
-
-class ConcreteCreator1(Creator):
-    def factory_method(self) -> Product:
-        return ConcreteProduct1()
-
-
-class ConcreteCreator2(Creator):
-    def factory_method(self) -> Product:
-        return ConcreteProduct2()
-
-
-class Product(ABC):
-    @abstractmethod
-    def operation(self) -> str:
-        pass
 
 
 
-class ConcreteProduct1(Product):
-    def operation(self) -> str:
-        return "{Result of the ConcreteProduct1}"
+class ConcreteFactoryA:
+    def __init__(self):
+        self.product = 'Product A'
 
 
-class ConcreteProduct2(Product):
-    def operation(self) -> str:
-        return "{Result of the ConcreteProduct2}"
-
-
-def client_code(creator: Creator) -> None:
-    print(f"Client: I'm not aware of the creator's class, but it still works.\n"
-          f"{creator.some_operation()}", end="")
-    print('\n')
-
-# 传入不同的属性 然后根据属性创建不通的类对象,不同的类对象可以调用相同的方法
-class Gun:
-    def Print(self):
-        print('hello world')
-        pass
-class ak47(Gun):
-    def __init__(self,name):
-        self.name = name
-    def Print(self):
-        print('the gun is {}'.format(self.name))
-
-class ak48(Gun):
-    def __init__(self,name):
-        self.name = name
-    # def Print(self):
-        #print('the gun is {}'.format(self.name))
-
-def createGun(name)->Gun:
-    if name == "ak47":
-        return ak47(name)
-    elif name == "ak48":
-        return ak48(name)
-
-def client(Gun):
-    Gun.Print()
-
-def test():
-    client(createGun("ak47"))
-    client(createGun("ak48"))
+class ConcreteFactoryB:
+    def __init__(self):
+        self.product = 'Product B'
 
 def main():
-    print("App: Launched with the ConcreteCreator1.")
-    client_code(ConcreteCreator1())
-    print("App: Launched with the ConcreteCreator2.")
-    client_code(ConcreteCreator2())
+    pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-    test()
