@@ -21,27 +21,15 @@ class Logger:
 
 
 def main():
-    pass
+   logger1 = Logger()
+   logger2 = Logger()
+   print(logger1 == logger2)
+   logger1.log('wo shi sun wei ming')
+   logger2.log('ni shi shei?')
+
+
+
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
