@@ -1,6 +1,6 @@
 # 抽象产品接口 - 按钮
 class Button:
-    def paint(self):
+     def paint(self):
         pass
 
 # 具体产品类 - WindowsButton
