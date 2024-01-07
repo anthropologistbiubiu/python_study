@@ -1,4 +1,4 @@
-import copy # 原型模式
+import copy
 
 class Circle:
     def __init__(self,radius):
@@ -34,8 +34,8 @@ def main():
   circle = Circle(5)
   rectangle = Rectangle(3,4)
   edit = GraphEditor()
-  edit.add_shape(circle)
-  edit.add_shape(rectangle)
+  edit.add_shape(circle.clone())
+  edit.add_shape(rectangle.clone())
   edit.print_shape()
 
 if __name__ == '__main__':
