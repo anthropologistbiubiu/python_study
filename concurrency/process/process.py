@@ -1,5 +1,6 @@
 
 import multiprocessing
+import time
 from concurrent.futures import ProcessPoolExecutor
 
 # 进程的创建和使用
@@ -7,16 +8,11 @@ def my_process(i):
     print(f'{i} my_process')
 
 # 进程池
-
 def my_process_pool(i):
     print('my_process_pool')
     return i**2
 
-
-
 # 共享变量
-
-
 def my_function(shared_variable, lock, i):
     with lock:
         shared_variable.value += i
@@ -24,6 +20,43 @@ def my_function(shared_variable, lock, i):
 
 
 # 进程的事件通知
+
+def data_ready(event):
+    print('我已经开始准备数据了')
+    time.sleep(2)
+    print('数据准备完成')
+    event.set()
+
+def data_process(event):
+    print('我已经准备开始消费数据了')
+    event.wait()
+    time.sleep(5)
+    print('数据消费完成')
+
+
+
+# 进程之间通过pipe 来实现数据通信
+def pipe_data_ready(pipe):
+    print('pipe_data_ready')
+    count = 1
+    while count < 10:
+        print(count)
+        pipe.send(count)
+        count += 1
+    pipe.send(None)
+    pipe.close()
+
+def pipe_data_consumer(pipe):
+
+    while True:
+        message =  pipe.recv()
+        if message == None:
+            break
+        print(f'pipe_data_consumer {message}')
+    print('pipe_data_consumer finish')
+    pipe.close()
+    return
+
 
 
 def main():
@@ -48,8 +81,23 @@ def main():
         process.join()
     print(shared_variable.value)
 
+    event = multiprocessing.Event()
+    producer = multiprocessing.Process(target=data_ready,args=(event,))
+    consumer = multiprocessing.Process(target=data_process,args=(event,))
 
+    producer.start()
+    consumer.start()
+    producer.join()
+    consumer.join()
+    producer_pipe,consumer_pipe =  multiprocessing.Pipe()
 
+    pipe_producer = multiprocessing.Process(target=pipe_data_ready,args=(consumer_pipe,))
+    pipe_consumer = multiprocessing.Process(target=pipe_data_consumer,args=(producer_pipe,))
+
+    pipe_producer.start()
+    pipe_consumer.start()
+    pipe_producer.join()
+    pipe_consumer.join()
 
 
 if __name__ == '__main__':
