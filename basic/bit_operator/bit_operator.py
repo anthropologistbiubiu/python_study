@@ -3,9 +3,13 @@
 
 # 位运算符表示➕➖✖️➗
 
+# 也就是说依然没有解决的是正数和负数之间的求和
+
+#
 def bit_operator_add(a, b):
     c = a ^ b
     d = (a & b) << 1
+    print(c,d)
     while d != 0:
         a = c
         b = d
@@ -15,7 +19,7 @@ def bit_operator_add(a, b):
 
 
 def main():
-    print(bit_operator_add(1000,1))
+    print(bit_operator_add(1,-1))
 if __name__ == '__main__':
   main()
 
