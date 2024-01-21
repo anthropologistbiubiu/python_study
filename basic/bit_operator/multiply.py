@@ -1,8 +1,14 @@
 
 
+# 00110001
+# 00000011
+# -------------
 
 def multiply(a,b):
-    pass
+
+  for i in range (64):
+    if b & 1 == 0:
+        pass
 
 def main():
     pass
