@@ -15,7 +15,7 @@ def multiply(a,b):
   return ans
 
 def main():
-    print(multiply(32,2001))
+    print(multiply(1,2001))
 
 if __name__ == '__main__':
     main()

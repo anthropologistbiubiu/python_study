@@ -3,8 +3,7 @@
 
 
 # 使用位运算实现减法
-def bit_operator_sub(num1,num2):
-
+def sub(num1,num2):
     a = num1
     b = -num2
     c = a ^ b
@@ -18,7 +17,7 @@ def bit_operator_sub(num1,num2):
 
 
 def main():
-    print(bit_operator_sub(10,1))
+    print(sub(10,1))
 
 
 if __name__ == '__main__':
