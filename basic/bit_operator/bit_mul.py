@@ -4,6 +4,8 @@
 # 00000011
 # -------------
 
+def add(a,b):
+    pass
 def multiply(a,b):
   ans = 0
   for i in range (64):
