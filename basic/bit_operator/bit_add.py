@@ -5,7 +5,7 @@
 
 # 负数&负数一定是负数
 # 正数
-def bit_operator_add(a, b):
+def add(a, b):
     c = a ^ b
     d = (a & b) << 1
     print(c,d)
