@@ -11,7 +11,7 @@ class MyClass:
         self.__name = name
 
 def main():
-    obj = MyClass('zhangsan')
+    obj = MyClass('')
     print(obj.get_name())
 
 
