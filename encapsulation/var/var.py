@@ -1,6 +1,10 @@
 
 
 
+
+
+
+# 私有成员方法和成员变量的封装
 class MyClass:
     def __init__(self):
         self.__private_variable = 10
