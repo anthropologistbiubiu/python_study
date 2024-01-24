@@ -3,19 +3,11 @@ from abc import ABC, abstractmethod
 from typing import Any, Optional
 
 
-class Handler(ABC):
-    @abstractmethod
-    def set_next(self, handler: Handler) -> Handler:
-        pass
-    @abstractmethod
-    def handle(self, request) -> Optional[str]:
-        pass
 
+class AbstractHandler():
 
-class AbstractHandler(Handler):
-
-    _next_handler: Handler = None
-    def set_next(self, handler: Handler) -> Handler:
+    _next_handler = None
+    def set_next(self, handler):
         self._next_handler = handler
         return handler
     @abstractmethod
@@ -48,10 +40,9 @@ class DogHandler(AbstractHandler):
             return super().handle(request)
 
 
-def client_code(handler: Handler) -> None:
+def client_code(handler) -> None:
 
     for food in ["Nut", "Banana", "Pear","Meat"]:
-        print(f"\nClient: Who wants a {food}?")
         result = handler.handle(food)
         if result:
             print(f"  {result}", end="")
