@@ -1,32 +1,74 @@
-# 定义抽象处理者
-class Approver:
-    def __init__(self, name, approval_limit, successor=None):
-        self.name = name
-        self.approval_limit = approval_limit
-        self.successor = successor
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Any, Optional
 
-    def process_request(self, request_amount):
-        if request_amount <= self.approval_limit:
-            print(f"{self.name} approved the request.")
-        elif self.successor:
-            print(f"{self.name} cannot approve. Passing to {self.successor.name}.")
-            self.successor.process_request(request_amount)
+
+class Handler(ABC):
+    @abstractmethod
+    def set_next(self, handler: Handler) -> Handler:
+        pass
+    @abstractmethod
+    def handle(self, request) -> Optional[str]:
+        pass
+
+
+class AbstractHandler(Handler):
+
+    _next_handler: Handler = None
+    def set_next(self, handler: Handler) -> Handler:
+        self._next_handler = handler
+        return handler
+    @abstractmethod
+    def handle(self, request: Any) -> str:
+        if self._next_handler:
+            return self._next_handler.handle(request)
+        return None
+
+class MonkeyHandler(AbstractHandler):
+    def handle(self, request: Any) -> str:
+        if request == "Banana":
+            return f"Monkey: I'll eat the {request}"
         else:
-            print(f"{self.name} cannot approve. Request exceeds all approval limits.")
+            return super().handle(request)
 
-# 具体处理者
-manager = Approver("Manager", 1000)
-director = Approver("Director", 5000)
-vp = Approver("VP", 10000)
 
-# 设置责任链
-manager.successor = director
-director.successor = vp
+class SquirrelHandler(AbstractHandler):
+    def handle(self, request: Any) -> str:
+        if request == "Nut":
+            return f"Squirrel: I'll eat the {request}"
+        else:
+            return super().handle(request)
 
-# 客户端代码
+
+class DogHandler(AbstractHandler):
+    def handle(self, request: Any) -> str:
+        if request == "MeatBall":
+            return f"Dog: I'll eat the {request}"
+        else:
+            return super().handle(request)
+
+
+def client_code(handler: Handler) -> None:
+
+    for food in ["Nut", "Banana", "Pear","Meat"]:
+        print(f"\nClient: Who wants a {food}?")
+        result = handler.handle(food)
+        if result:
+            print(f"  {result}", end="")
+        else:
+            print(f"  {food} was left untouched.", end="")
+
+
 if __name__ == "__main__":
-    # 创建报销申请
-    request_amount = 8000
+    monkey = MonkeyHandler()
+    squirrel = SquirrelHandler()
+    dog = DogHandler()
 
-    # 提交请求给责任链的起始点
-    manager.process_request(request_amount)
+    print("Chain: Monkey > Squirrel > Dog")
+    monkey.set_next(squirrel).set_next(dog)
+
+    client_code(monkey)
+    print("\n")
+    print("Subchain: Squirrel > Dog")
+    client_code(squirrel)
+    print("\n")
