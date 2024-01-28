@@ -1,4 +1,4 @@
-
+from abc import abstractmethod
 
 
 
@@ -7,9 +7,13 @@ class Context():
 
 
 class Strategy:
-    pass
+    @abstractmethod
+    def do_logic(self):
+        pass
+
 class concrecteStrategyA:
-    pass
+    def do_logic(self):
+        pass
 
 class concrecteStrategyA:
     pass
