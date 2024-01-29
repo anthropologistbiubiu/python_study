@@ -1,15 +1,19 @@
 from abc import ABC,abstractmethod
 from typing import Any
 class Handler(ABC):
+    @abstractmethod
+    def handler(self,food):
+        pass
+    @abstractmethod
     def set_next(self,handler):
-        print(f'set_next {handler}')
         pass
 
 class AbstractHandler(Handler):
 
     _next_node: Handler = None
-    def set1_next(self,handler:Handler) -> Handler:
-        pass
+    def set_next(self,handler:Handler) -> Handler:
+        self._next_node = handler
+        return handler
     @abstractmethod
     def handler(self,food):
         if self._next_node:
