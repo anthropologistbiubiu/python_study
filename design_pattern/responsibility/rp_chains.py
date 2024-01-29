@@ -1,16 +1,16 @@
 from abc import ABC,abstractmethod
-# from __future__ import annotations
 from typing import Any
-class Handler():
-    def set_next(self):
+class Handler(ABC):
+    def set_next(self,handler):
+        print(f'set_next {handler}')
         pass
 
-class AbstractHandler():
+class AbstractHandler(Handler):
 
     _next_node: Handler = None
-    def set_next(self,handler:Handler) -> Handler:
-         self._next_node = handler
-         return self._next_node
+    def set1_next(self,handler:Handler) -> Handler:
+        pass
+    @abstractmethod
     def handler(self,food):
         if self._next_node:
             self._next_node.handler(food)
@@ -18,11 +18,13 @@ class AbstractHandler():
             pass
 
 class MonkeyHandler(AbstractHandler):
+
     def handler(self,food):
        if food == "Banana":
             print(f"monkey eat {food}")
        else:
            super().handler(food)
+
 
 class SquirrelHandler(AbstractHandler):
     def handler(self,food):
