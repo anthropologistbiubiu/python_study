@@ -1,11 +1,14 @@
-
+from abc import ABC, abstractmethod
 
 
 class AbstractSubject:
     pass
 
-class Subject:
-    pass
+class Subject(ABC):
+
+   @abstractmethod
+   def update(self):
+        pass
 
 class AbstractObserver:
     pass
