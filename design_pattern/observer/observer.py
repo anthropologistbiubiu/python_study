@@ -1,5 +1,5 @@
+import random
 from abc import ABC, abstractmethod
-
 
 
 class AbstractSubject(ABC):
@@ -20,14 +20,23 @@ class AbstractSubject(ABC):
 class Subject(AbstractSubject):
 
     _observers = []
-   def notify(self):
-       pass
+    _status = 0
+    def notify(self):
+        for observer in self._observers:
+            observer.update(self)
 
-   def attach(self):
-       pass
+    def attach(self,observer):
+        self._observers.append(observer)
 
-   def detach(self):
-       pass
+    def detach(self):
+        self._observers.remove()
+
+    def do_some_logic(self):
+        print("\nSubject: I'm doing something important.")
+        self._status = random.randint(1,10)
+        print(f"Subject: My state has just changed to: {self._state}")
+        self.notify()
+
 
 class AbstractObserver(ABC):
     pass
