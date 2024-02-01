@@ -1,7 +1,6 @@
 import random
 from abc import ABC, abstractmethod
 
-
 class AbstractSubject(ABC):
 
     @abstractmethod
@@ -15,7 +14,6 @@ class AbstractSubject(ABC):
     @abstractmethod
     def detach(self):
         pass
-
 
 class Subject(AbstractSubject):
 
@@ -38,12 +36,27 @@ class Subject(AbstractSubject):
         self.notify()
 
 
+
 class AbstractObserver(ABC):
+    @abstractmethod
+    def update(self):
+        pass
+
+class observerA(AbstractObserver):
+   def update(self,subject: Subject):
+       if subject._status > 3:
+           print(f'observerA { subject }')
+
+class observerB(AbstractObserver):
+    def update(self,subject :Subject):
+        if subject._status > 3:
+            print(f'observerA {subject}')
+
+def client_code():
     pass
 
-class observerA:
+def main():
     pass
 
-class observerB:
-    pass
-
+if __name__ == '__main__':
+    main()
