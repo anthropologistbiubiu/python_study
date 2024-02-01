@@ -2,15 +2,12 @@ import random
 from abc import ABC, abstractmethod
 
 class AbstractSubject(ABC):
-
     @abstractmethod
     def notify(self):
         pass
-
     @abstractmethod
     def attach(self):
         pass
-
     @abstractmethod
     def detach(self):
         pass
@@ -32,7 +29,7 @@ class Subject(AbstractSubject):
     def do_some_logic(self):
         print("\nSubject: I'm doing something important.")
         self._status = random.randint(1,10)
-        print(f"Subject: My state has just changed to: {self._state}")
+        print(f"Subject: My state has just changed to: {self._status }")
         self.notify()
 
 
@@ -45,18 +42,26 @@ class AbstractObserver(ABC):
 class observerA(AbstractObserver):
    def update(self,subject: Subject):
        if subject._status > 3:
-           print(f'observerA { subject }')
+           print(f'observerA { subject._status }')
 
 class observerB(AbstractObserver):
     def update(self,subject :Subject):
         if subject._status > 3:
-            print(f'observerA {subject}')
+            print(f'observerB {subject._status}')
 
 def client_code():
-    pass
+    observer1 = observerA()
+    observer2 = observerB()
+    subject = Subject()
+    subject.attach(observer1)
+    subject.attach(observer2)
+    subject.do_some_logic()
+
+
+
 
 def main():
-    pass
+   client_code()
 
 if __name__ == '__main__':
     main()
