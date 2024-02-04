@@ -4,6 +4,11 @@ class Component:
     def operator(self):
         return "Component"
 
+class ConcreateComponent(Component):
+
+    def operator(self):
+        pass
+
 class Decorator(ABC):
     @abstractmethod
     def operator(self,component: Component):
