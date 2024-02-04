@@ -5,23 +5,23 @@ class Component:
         return "Component"
 
 class Decorator(ABC):
-
-
     @abstractmethod
     def operator(self,component: Component):
         pass
 
-class ConcreateDecoratorA:
+class ConcreateDecoratorA(Decorator):
 
     def operator(self,componemt: Component):
         return  f"ConcreateDecoratorA + { componemt.operator() }"
 
-class ConcreateDecoratorB:
+class ConcreateDecoratorB(Decorator):
+
     def operator(self,componemt: Component):
         return  f"ConcreateDecoratorB + { componemt.operator() }"
 
 def client_code():
-    pass
+    simple = Decorator()
+    component = Component()
 
 
 if __name__ == '__main__':
