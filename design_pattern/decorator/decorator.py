@@ -3,15 +3,20 @@ from abc import ABC,abstractmethod
 class Component:
     pass
 
-class Decorator:
-    pass
+class Decorator(ABC):
 
+    @abstractmethod
+    def operator(self):
+        pass
 
 class ConcreateDecoratorA:
-    pass
+
+    def operator(self):
+        pass
 
 class ConcreateDecoratorB:
-    pass
+    def operator(self):
+        pass
 
 
 def client_code():
