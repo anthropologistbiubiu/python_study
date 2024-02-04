@@ -8,30 +8,33 @@ class Component:
 
 class ConcreateComponent(Component):
 
-    def __init__(self,decorator):
-        self._decorator = decorator
-
     def operator(self):
-        return self._decorator + "ConcreateComponent"
+        return  " {ConcreateComponent} "
 
 class Decorator(ABC):
+
     @abstractmethod
-    def operator(self,component: Component):
+    def operator(self):
         pass
 
 class ConcreateDecoratorA(Decorator):
 
-    def operator(self,componemt: Component):
-        return  f"ConcreateDecoratorA + { componemt.operator() }"
+    def __init__(self,component):
+        self._component = component
+    def operator(self):
+        return  "Decorated By ConcreateDecoratorA" + self._component.operator()
 
 class ConcreateDecoratorB(Decorator):
 
+    def __init__(self,component):
+        self._component = component
     def operator(self,componemt: Component):
-        return  f"ConcreateDecoratorB + { componemt.operator() }"
+        return  "Decorated By ConcreateDecoratorB"  + self._component.operator()
 
 def client_code():
-    simple = Decorator()
-    component = Component()
+    component = ConcreateComponent()
+    decorator1 = ConcreateDecoratorA(component )
+    print(decorator1.operator())
 
 
 if __name__ == '__main__':
