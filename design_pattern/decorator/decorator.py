@@ -1,13 +1,18 @@
 from abc import ABC,abstractmethod
 
 class Component:
+
+    @abstractmethod
     def operator(self):
-        return "Component"
+        pass
 
 class ConcreateComponent(Component):
 
+    def __init__(self,decorator):
+        self._decorator = decorator
+
     def operator(self):
-        pass
+        return self._decorator + "ConcreateComponent"
 
 class Decorator(ABC):
     @abstractmethod
