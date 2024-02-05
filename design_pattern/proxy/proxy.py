@@ -10,9 +10,9 @@ class Subject(ABC):
 class RealSubject(Subject):
 
     def request(self):
-        print('end real request')
+        print('send real request')
 
-class proxy():
+class Proxy(Subject):
     def __init__(self, subject: RealSubject):
         self.subject = subject
 
@@ -25,11 +25,13 @@ class proxy():
         print(f"get access_status")
         return True
     def log_access(self):
-        print(f'logging the cost of request',end='')
+        print(f'logging the cost of request')
 
-def client_code(subjectV):
-    pass
+def client_code(subject:Subject):
+    subject.request()
 
 if __name__ == '__main__':
-    client_code()
+    request = RealSubject()
+    proxy = Proxy(request)
+    client_code(proxy)
 
