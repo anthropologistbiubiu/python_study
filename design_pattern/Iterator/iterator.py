@@ -2,8 +2,18 @@ from abc  import abstractmethod
 
 class Collection:
     pass
+
 class Iterator():
-    pass
+
+   _reverse = False
+   def __init__(self,collection):
+       self.collection = collection
+
+   def __iter__(self):
+      pass
+
+   def get_reverse_iterator(self):
+       pass
 
 def client_code():
     pass
