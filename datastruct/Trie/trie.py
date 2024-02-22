@@ -12,13 +12,19 @@ class Trie:
         node = self.root
         for  char in word:
             if char in node.children:
-                pass
+               node = node.children[char]
+            else:
+                node.children[char] = Node()
+                node = node.children[char]
+        node.is_End_word = True
 
 
 
+def main():
+    pass
 
-
-
+if __name__ == '__main__':
+    main()
 
 
 
