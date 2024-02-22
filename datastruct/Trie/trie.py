@@ -19,9 +19,31 @@ class Trie:
         node.is_End_word = True
 
 
+    def search(self,word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+               return False
+            else:
+                node = node.children[char]
+        return node.is_End_word
+
+    def starts_with(self,prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            else:
+                node = node.children[char]
+        return node.is_End_word
+
+
+
+
 
 def main():
-    pass
+    trie = Trie()
+    trie.Insert("apple")
 
 if __name__ == '__main__':
     main()
