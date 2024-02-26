@@ -14,10 +14,9 @@ class SegmentNodeTree:
         self.root = None
 
     def buildSegmentTree(self):
-        self._buildSegmentTree(0,len(self.nums)-1)
+        self.root = self._buildSegmentTree(0,len(self.nums)-1)
 
     def _buildSegmentTree(self,start,end):
-
         if start > end:
             return None
 
@@ -37,33 +36,31 @@ class SegmentNodeTree:
         return node
 
     def range_sum(self,start,end):
-        self._range_sum(self.root,start,end)
+        return self._range_sum(self.root,start,end)
     def _range_sum(self,root,start,end):
         if root.start == start and root.end == end:
             return root.total
-        mid = (root.start + root.end) // 2
+        mid = root.start + (root.end - root.start) // 2
         if start > mid:
             return self._range_sum(root.right,start,end)
-        elif end < mid:
+        elif end <= mid:
             return self._range_sum(root.left,start,end)
         return self._range_sum(root.left,start,mid) + self._range_sum(root.right,mid+1,end)
 
     def travels(self):
-        root = self.root
+        self._travels(self.root)
+    def _travels(self,root):
         if root == None:
             return
-        self.travels(root.left)
-        print(root.left,root.right)
-        self.travels(root.right)
+        self._travels(root.left)
+        self._travels(root.right)
 
 def main():
     nums = [1,2,3,4,5,6,7]
     segmentTree1 = SegmentNodeTree(nums)
     segmentTree1.buildSegmentTree()
     segmentTree1.travels()
-    print(segmentTree1.nums)
-    print(segmentTree1.root)
-    print(segmentTree1.range_sum(1,2))
+    print(segmentTree1.range_sum(0,1))
 
 if __name__ == '__main__':
     main()
