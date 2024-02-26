@@ -54,6 +54,10 @@ class SegmentNodeTree:
             return
         self._travels(root.left)
         self._travels(root.right)
+    def update(self):
+        self._update(self.root)
+    def _update(self,root):
+        pass
 
 def main():
     nums = [1,2,3,4,5,6,7]
