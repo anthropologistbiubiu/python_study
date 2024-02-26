@@ -1,6 +1,4 @@
 
-
-
 class SegmentNode:
     def __init__(self,start,end) -> None:
         self.total = 0
@@ -27,7 +25,8 @@ class SegmentNodeTree:
             node = SegmentNode(start,end)
             node.total = self.nums[end]
             return node
-        mid = (start + end) // 2
+
+        mid = start + (end - start) // 2
         left_node = self._buildSegmentTree(start,mid)
         right_node = self._buildSegmentTree(mid+1,end)
         # 退栈空间的内存操作
@@ -36,9 +35,6 @@ class SegmentNodeTree:
         node.left = left_node
         node.right = right_node
         return node
-
-
-
 
     def range_sum(self,start,end):
         self._range_sum(self.root,start,end)
@@ -56,8 +52,9 @@ class SegmentNodeTree:
 def main():
     nums = [1,2,3,4,5,6,7]
     segmentTree1 = SegmentNodeTree(nums)
-    print(segmentTree1.root)
     segmentTree1.buildSegmentTree()
+    print(segmentTree1.nums)
+    print(segmentTree1.root)
     print(segmentTree1.range_sum(1,2))
 
 if __name__ == '__main__':
