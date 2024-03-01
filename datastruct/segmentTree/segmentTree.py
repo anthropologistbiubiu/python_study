@@ -44,6 +44,7 @@ class SegmentNodeTree:
         if start > mid:
             return self._range_sum(root.right,start,end)
         elif end <= mid:
+            print('end',end,mid)
             return self._range_sum(root.left,start,end)
         return self._range_sum(root.left,start,mid) + self._range_sum(root.right,mid+1,end)
 
