@@ -10,14 +10,19 @@ from typing import List
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         if len(nums) == 0:
-            return -1
+            return 0
         pre, cur = 0, 0
-        for i,num in enumerate(nums):
+        while cur < len(nums):
             if nums[cur] == nums[pre]:
-                cur+=1
-            elif cur-pre ==1:
-                continue
+                cur += 1
             else:
-               nums[cur-1] == cur[cur]
-                ## nums[cur]
-        return nums.count()
+                while cur - pre > 1:
+                    nums[cur - 1] = nums[cur]
+                    cur -= 1
+                pre += 1
+        return pre + 1
+
+
+solution = Solution()
+print(solution.removeDuplicates([1,2,2,2,3,3,4]))
+print(solution.removeDuplicates([1,1,1,1,1,1,1]))
