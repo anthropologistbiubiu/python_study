@@ -15,6 +15,5 @@ class Solution:
                 nums[left] = nums[right]
                 right -= 1
         return left
-
 solution = Solution()
 print(solution.removeElement([1,1,3,5,5],1))

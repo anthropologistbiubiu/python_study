@@ -61,7 +61,7 @@ class SegmentNodeTree:
         pass
 
 def main():
-    nums = [1,2,3,4,5,6,7]
+    nums = [1, 3, 5, 7, 9, 11, 13, 15]
     segmentTree1 = SegmentNodeTree(nums)
     segmentTree1.buildSegmentTree()
     segmentTree1.travels()

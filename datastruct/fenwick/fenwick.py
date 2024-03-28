@@ -26,7 +26,7 @@ class BinaryIndexTree:
 
 
 def main():
-    nums = [1,3,5,7,9,10,22,5]
+    nums = [1, 3, 5, 7, 9, 11, 13, 15]
     bit = BinaryIndexTree(nums)
     print(bit.tree)
     print(bit.query(2))
