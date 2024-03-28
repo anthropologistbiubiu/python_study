@@ -8,12 +8,13 @@ class Solution:
         if len(nums) == 0:
             return 0
         left, right = 0, len(nums) - 1
-        while left < right:
+        while left <= right:
             if nums[left] != val:
                 left += 1
             else:
                 nums[left] = nums[right]
-
+                right -= 1
+        return left
 
 solution = Solution()
-print(solution.removeElement([1,2,3,4,5],5))
+print(solution.removeElement([1,1,3,5,5],1))
