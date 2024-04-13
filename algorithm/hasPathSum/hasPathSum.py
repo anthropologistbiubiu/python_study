@@ -1,4 +1,6 @@
+
 from typing import Optional
+
 
 
 # Definition for a binary tree node.
@@ -8,8 +10,6 @@ class TreeNode:
          self.left = left
          self.right = right
 
-
-
 class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         pass
