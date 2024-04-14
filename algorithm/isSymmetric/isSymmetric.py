@@ -1,6 +1,5 @@
 from typing import Optional
 
-
 # Definition for a binary tree node.
 class TreeNode:
      def __init__(self, val=0, left=None, right=None):
@@ -9,7 +8,10 @@ class TreeNode:
          self.right = right
 
 
-
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        pass
+
+       if root.left and root.right:
+            return root.left.val == root.right.val
+       else:
+            pass
