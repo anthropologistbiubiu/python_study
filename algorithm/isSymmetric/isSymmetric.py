@@ -15,7 +15,9 @@ class Solution:
             return True
         if not left or not right:
             return False
-        return (left.val == right.val) and self.isMirror(left.left,right.right)
+        if left.val != right.val:
+            return False
+        return self.isMirror(left.left,right.right) and self.isMirror(left.right,right.left)
 
 
 
