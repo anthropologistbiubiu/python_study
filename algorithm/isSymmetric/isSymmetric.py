@@ -7,11 +7,15 @@ class TreeNode:
          self.left = left
          self.right = right
 
-
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        return self.isMirror(root.left,root.right)
+    def isMirror(self, left:Optional[TreeNode],right:Optional[TreeNode]) -> bool:
+        if not left and not right:
+            return True
+        if not left or not right:
+            return False
+        return (left.val == right.val) and self.isMirror(left.left,right.right)
 
-       if root.left and root.right:
-            return root.left.val == root.right.val
-       else:
-            pass
+
+
