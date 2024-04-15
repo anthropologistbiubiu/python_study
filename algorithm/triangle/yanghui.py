@@ -1,4 +1,3 @@
-
 from typing import List
 
 
@@ -16,9 +15,10 @@ class Solution1:
             ans.append(rows)
         return ans
 
+
 class Solution2:
     def getRow(self, rowIndex: int) -> List[int]:
-        pass
+        ans = []
 
 solution = Solution2()
 print(solution.generate(5))
