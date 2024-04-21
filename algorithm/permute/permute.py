@@ -19,6 +19,22 @@ from typing import List
 输出：[[1]]
 
 '''
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        self.dfs(nums,0,ans)
+        return ans
+    def dfs(self,nums,cur,ans):
+        if cur == len(nums)-1:
+            ans.append(nums[:])
+            return
+        for i in range(cur, len(nums)):
+            nums[i], nums[cur] = nums[cur], nums[i]
+            self.dfs(nums, cur + 1,ans)
+            nums[i], nums[cur] = nums[cur], nums[i]
+    def sort_str(self):
         pass
+
+solution = Solution()
+print(solution.permute([1,2,3]))
