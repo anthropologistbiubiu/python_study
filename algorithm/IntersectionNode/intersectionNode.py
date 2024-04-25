@@ -21,3 +21,10 @@ class Solution:
         while short < long:
             fast = fast.next
             short += 1
+        while fast and slow:
+            if fast == slow:
+                return fast
+            fast = fast.next
+            slow = slow.next
+        return None
+
