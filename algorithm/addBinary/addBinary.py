@@ -8,6 +8,3 @@ class Solution:
 
 
 
-
-solution = Solution()
-print(solution.addBinary("111","11101"))
