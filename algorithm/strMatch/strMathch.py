@@ -15,8 +15,9 @@ def compute_next(pattern):
 # 示例
 pattern = "abababca"
 next_array = compute_next(pattern)
-print(f"Pattern: {pattern}")
 print(f"Next array: {next_array}")
+solution = Solution()
+print(solution.strStr())
 
 
 
