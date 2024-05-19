@@ -15,6 +15,7 @@ class Solution:
         node = TreeNode(value,None,None)
         node.left = self.sortedArrayToBST(nums[:middle_index])
         node.right = self.sortedArrayToBST(nums[middle_index+1:])
+        return node
     def sortedArrayToBSTPrint(self):
         pass
 
