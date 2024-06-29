@@ -9,8 +9,8 @@ class ListNode:
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         carry = 0
-        l3 = ListNode()
-        cur = l3
+        dummy = ListNode()
+        cur = dummy
         while l1 or l2:
           val1 = l1.val if l1 else 0
           val2 = l2.val if l2 else 0
@@ -24,4 +24,4 @@ class Solution:
               l2 = l2.next
         if carry > 0:
             cur.next = ListNode(carry)
-        return l3.next
+        return dummy.next
