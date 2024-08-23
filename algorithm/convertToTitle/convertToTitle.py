@@ -11,27 +11,23 @@ class Solution:
         while columnNumber > 0:
             a = columnNumber // 26
             b = columnNumber % 26
-            if columnNumber == 26:
-                result = 'Z' + result
-                break
-            columnNumber = a
-            # print(a,b)
+            if b == 0:
+                columnNumber = a-1
+            else:
+                columnNumber = a
             c = map.get(b)
             result = c + result
         return result
 
 
 solution = Solution()
-print(solution.convertToTitle(28))
-print(solution.convertToTitle(52))
+#print(solution.convertToTitle(28))
+#print(solution.convertToTitle(52))
 print(solution.convertToTitle(1))
 print(solution.convertToTitle(26))
 print(solution.convertToTitle(26*26))
 print(solution.convertToTitle(701))
-print(solution.convertToTitle(2147483647))
-
-
-
+#print(solution.convertToTitle(2147483647))
 #输出："FXSHRXW"
 
 
