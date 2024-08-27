@@ -4,11 +4,12 @@ from typing import List
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        cur = 0
         self.dfs(board,word,0,0,0)
 
 
     def dfs(self,board:List[List[str]],word:str,i:int,j :int, cur:int):
-        if board[i][j] != word[cur] or i == 0:
+        if board[i][j] != word[cur] or i <= 0 or j <= 0 or j == len(board[0]) or i == len(board) :
             return
         else:
             cur+=1
@@ -16,4 +17,5 @@ class Solution:
         self.dfs(board,word,i+1,j,cur)
         self.dfs(board,word,i,j-1,cur)
         self.dfs(board,word,i,j+1,cur)
+
 
