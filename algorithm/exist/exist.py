@@ -11,14 +11,16 @@ class Solution:
             return True
         if i < 0 or j < 0 or j == len(board[0]) or i == len(board):
             return False
-        if board[i][j] != word[cur]:
-            pass
-        else:
+        #if board[i][j] != word[cur]:
+            #pass
+        if board[i][j] == word[cur]:
             cur += 1
         return self.dfs(board, word, i - 1, j, cur) or self.dfs(board, word, i + 1, j, cur) or self.dfs(board, word, i, j - 1, cur) or self.dfs(board, word, i, j + 1, cur)
 
 
 board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
 word = "ABCCED"
+#board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+#word = "SEE"
 solution = Solution()
 print(solution.exist(board, word))
