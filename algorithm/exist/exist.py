@@ -15,19 +15,25 @@ class Solution:
             return True
         if i < 0 or j < 0 or j == len(board[0]) or i == len(board):
             return False
+        tem = board[i][j]
         if board[i][j] == word[cur]:
+            board[i][j] = '#'
             cur += 1
         else:
             return False
-        return self.dfs(board, word, i - 1, j, cur) or self.dfs(board, word, i + 1, j, cur) or self.dfs(board, word, i,
-                                                                                                        j - 1,
-                                                                                                        cur) or self.dfs(
-            board, word, i, j + 1, cur)
+        found = (self.dfs(board, word, i - 1, j, cur) or
+                 self.dfs(board, word, i + 1, j, cur) or
+                 self.dfs(board, word, i, j - 1, cur) or
+                 self.dfs(board, word, i, j + 1, cur))
+        board[i][j] = tem
+        return found
 
 
-board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-word = "ABCCED"
+#board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+#word = "ABCCED"
 #board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
 #word = "SEE"
+board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+word = "ABCB"
 solution = Solution()
 print(solution.exist(board, word))
