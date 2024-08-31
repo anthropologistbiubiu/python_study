@@ -8,6 +8,8 @@ class Solution:
             print(num)
 
 
+
+
 nums = [2, 3, 1, 1, 4]
 
 solution = Solution()
