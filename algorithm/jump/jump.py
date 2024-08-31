@@ -2,7 +2,9 @@ from typing import List
 
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        pass
+        dp = [0 for _ in range(0, len(nums))]
+        for index, num in enumerate(nums):
+            pass
 
 
 solution = Solution()
