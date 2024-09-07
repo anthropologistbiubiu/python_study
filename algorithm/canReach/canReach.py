@@ -1,27 +1,31 @@
 from typing import List
+import queue
 
 
 class Solution:
     def canReach(self, arr: List[int], start: int) -> bool:
-        queue = []
+        q = queue.Queue()
         exist = set()
-        queue.append(start)
-        while queue is not None:
-            elem = queue.pop()
-            print(elem)
+        q.put(start)
+        while not q.empty():
+            #arr = [4, 4, 1, 3, 0, 3]
+            elem = q.get()
             if arr[elem] == 0:
                 return True
             if elem in exist:
                 continue
-            if start - arr[start] > 0:
-                queue.append(start - arr[start])
-            if start + arr[start] < len(arr) - 1:
-                queue.append(start + arr[start])
+            else:
+                exist.add(elem)
+            if elem - arr[elem] >= 0:
+                q.put(elem - arr[elem])
+            if elem + arr[elem] < len(arr):
+                q.put(elem + arr[elem])
         return False
 
 
-arr = [4, 2, 3, 0, 3, 1, 2]
-start = 5
 
+arr = [4, 4, 1, 3, 0, 3]
+start = 2
 solution = Solution()
 print(solution.canReach(arr, start))
+
