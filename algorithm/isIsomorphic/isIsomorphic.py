@@ -5,4 +5,5 @@
 
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        pass
+        s_to_t = {}
+        t_to_s = {}
