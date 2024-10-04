@@ -16,5 +16,6 @@ class Solution:
         dfs(1, comb)
         return result
 
+
 solution = Solution()
-print(solution.combine(n=5,k=3))
+print(solution.combine1(n=5,k=3))
