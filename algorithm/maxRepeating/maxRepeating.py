@@ -9,7 +9,7 @@ class Solution:
         for i in range(n):
             j = i
             repeat = 0
-            while  i + m < n and sequence[i:i+n] == word:
+            while  i + m <= n and sequence[i:i+m] == word:
                 repeat += 1
                 i += m
                 max_repeat = max(repeat,max_repeat)
