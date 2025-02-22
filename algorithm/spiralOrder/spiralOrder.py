@@ -23,14 +23,16 @@ class Solution:
             for i in range (top,bottom + 1):
                 result .append(matrix[i][right]) 
             right-=1
+
             if right < left:
                 break
-            for j in range(right,left):
+            for j in range(right,left-1,-1):
                 result.append(matrix[bottom][j])
             bottom-=1
+
             if bottom < top:
                 break
-            for i in range(bottom,top):
+            for i in range(bottom,top-1,-1):
                 result.append(matrix[i][left]) 
             left+=1
-
+        return result
