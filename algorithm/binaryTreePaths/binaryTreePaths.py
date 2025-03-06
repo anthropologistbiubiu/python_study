@@ -11,4 +11,13 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        pass
+        if not root:
+            return
+    def dfs(self,root:Optional[TreeNode],list:List[str],path:List[int]):
+        if not root:
+            return
+        path = path.append(path,root.val) 
+        if root.left:
+            self.dfs(root.left,list,path)
+        if root.right:
+            self.dfs(root.right,list,path)
