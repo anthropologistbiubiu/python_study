@@ -1,3 +1,4 @@
+from typing import List
 
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
@@ -13,4 +14,6 @@ class Solution:
 
 solution = Solution()
 peakElement = solution.findPeakElement([1,2,3])
+print(peakElement)
+peakElement = solution.findPeakElement([1,3,2])
 print(peakElement)
