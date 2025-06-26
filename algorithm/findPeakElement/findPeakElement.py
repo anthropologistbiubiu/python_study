@@ -15,5 +15,3 @@ class Solution:
 solution = Solution()
 peakElement = solution.findPeakElement([1,2,3])
 print(peakElement)
-peakElement = solution.findPeakElement([1,3,2])
-print(peakElement)
