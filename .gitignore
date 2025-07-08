@@ -1,0 +1,90 @@
+# ========================
+# Python 通用忽略
+# ========================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C 扩展生成文件
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+wheels/
+*.egg
+MANIFEST
+
+# 安装依赖的虚拟环境
+venv/
+ENV/
+env/
+.venv/
+.python-version
+
+# VS Code 缓存
+.vscode/
+
+# PyCharm / IntelliJ IDEA
+.idea/
+*.iml
+
+# 测试/覆盖率结果
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# 日志、运行时文件
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Sphinx 文档构建
+docs/_build/
+
+# 本地环境变量文件
+.env
+.env.*
+.venv/
+
+# 操作系统杂项
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Editor 临时文件
+*~
+*.sw?
+*.swo
+
+# MyPy cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pylint cache
+.pylint.d/
+
+# Pyre type checker
+.pyre/
+
+# Cython debug symbols
+cython_debug/
