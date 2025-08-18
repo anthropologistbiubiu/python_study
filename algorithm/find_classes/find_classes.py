@@ -4,7 +4,9 @@ import pandas as pd
 def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
 
     courses_counts = courses.groupby("class")["student"].count()
-    courses_index = courses_counts[courses_counts >= 5].index
+    print(courses_counts)
+    courses_index = courses_counts[courses_counts >= 1].index
+    print(courses_index)
     return pd.DataFrame({"class": courses_index})
 
 
@@ -14,5 +16,4 @@ data = {
     "class":   ["Math", "English", "Math", "Biology", "Math", "Computer", "Math", "Math", "Math"]
 }
 courses = pd.DataFrame(data)
-
 print(find_classes(courses))
