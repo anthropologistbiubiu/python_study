@@ -19,11 +19,15 @@ Employee 表：
 
 
 def project_employees_i(project: pd.DataFrame, employee: pd.DataFrame) -> pd.DataFrame:
-    result = project.merge(
+    merge = project.merge(
         employee,
         how="inner",
         on="employee_id",
     )
+    mean = merge.groupby("project_id").mean(
+        "experience_years").round(2).reset_index()
+    result = mean[["project_id", "experience_years"]].rename(
+        columns={"experience_years": "average_years"})
     return result
 
 
@@ -34,4 +38,4 @@ employee = pd.DataFrame({"employee_id": [1, 2, 3, 4], "name": [
                         "Khaled", "Ali", "John", "Doe"], "experience_years": [3, 2, 1, 1]})
 
 
-project_employees_i(project=project, employee=employee)
+print(project_employees_i(project=project, employee=employee))
