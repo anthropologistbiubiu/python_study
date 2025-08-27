@@ -4,25 +4,8 @@ import pandas as pd
 
 """
 Project 表：
-+-------------+-------------+
-| project_id  | employee_id |
-+-------------+-------------+
-| 1           | 1           |
-| 1           | 2           |
-| 1           | 3           |
-| 2           | 1           |
-| 2           | 4           |
-+-------------+-------------+
 
 Employee 表：
-+-------------+--------+------------------+
-| employee_id | name   | experience_years |
-+-------------+--------+------------------+
-| 1           | Khaled | 3                |
-| 2           | Ali    | 2                |
-| 3           | John   | 1                |
-| 4           | Doe    | 2                |
-+-------------+--------+------------------+
 
 输出：
 +-------------+---------------+
@@ -36,4 +19,19 @@ Employee 表：
 
 
 def project_employees_i(project: pd.DataFrame, employee: pd.DataFrame) -> pd.DataFrame:
-    pass
+    result = project.merge(
+        employee,
+        how="inner",
+        on="employee_id",
+    )
+    return result
+
+
+project = pd.DataFrame(
+    {"project_id": [1, 1, 1, 2, 2], "employee_id": [1, 2, 3, 1, 4]})
+
+employee = pd.DataFrame({"employee_id": [1, 2, 3, 4], "name": [
+                        "Khaled", "Ali", "John", "Doe"], "experience_years": [3, 2, 1, 1]})
+
+
+project_employees_i(project=project, employee=employee)
