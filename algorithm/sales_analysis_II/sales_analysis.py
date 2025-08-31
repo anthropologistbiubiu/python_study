@@ -38,7 +38,21 @@ id 为 3 的产品在 2019 年春季之后销售。
 
 
 def sales_analysis(product: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
-    pass
+    merge = sales.merge(
+        product,
+        how="inner",
+        on="product_id"
+    )
+    merge['sale_date'] = pd.to_datetime(merge["sale_date"])
+    filter = merge[(merge["sale_date"] > "2019-01-01") &
+                   (merge["sale_date"] <= "2019-03-31")]
+
+    temp = merge[~((merge["sale_date"] > "2019-01-01") &
+                 (merge["sale_date"] <= "2019-03-31"))]
+    index = temp["product_id"]
+    result = filter[~filter["product_id"].isin(index)]
+    print(result[["product_id", "product_name"]], type(result), type(index))
+    return result
 
 
 product_data = {
@@ -58,3 +72,27 @@ sales_data = {
     "price": [2000, 800, 800, 2800]
 }
 sales_df = pd.DataFrame(sales_data)
+
+
+# sales_analysis(product_df, sales_df)
+
+
+product_data = {
+    "product_id": [1, 2, 3],
+    "product_name": ["S8", "G4", "iPhone"],
+    "unit_price": [1000, 800, 1400]
+}
+product_df = pd.DataFrame(product_data)
+
+# Sales table DataFrame
+sales_data = {
+    "seller_id": [1, 2, 3],
+    "product_id": [1, 2, 3],
+    "buyer_id": [1, 3, 4],
+    "sale_date": ["2019-01-21", "2019-06-02", "2019-05-13"],
+    "quantity": [2, 1, 2],
+    "price": [2000, 800, 2800]
+}
+
+sales_df = pd.DataFrame(sales_data)
+sales_analysis(product_df, sales_df)
