@@ -94,4 +94,4 @@ sales_data = {
 }
 
 sales_df = pd.DataFrame(sales_data)
-sales_analysis(product_df, sales_df)
+print(sales_analysis(product_df, sales_df))
