@@ -44,10 +44,10 @@ def sales_analysis(product: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
         on="product_id"
     )
     merge['sale_date'] = pd.to_datetime(merge["sale_date"])
-    filter = merge[(merge["sale_date"] > "2019-01-01") &
+    filter = merge[(merge["sale_date"] >= "2019-01-01") &
                    (merge["sale_date"] <= "2019-03-31")]
 
-    temp = merge[~((merge["sale_date"] > "2019-01-01") &
+    temp = merge[~((merge["sale_date"] >= "2019-01-01") &
                  (merge["sale_date"] <= "2019-03-31"))]
     index = temp["product_id"]
     result = filter[~filter["product_id"].isin(index)]
