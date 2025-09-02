@@ -3,9 +3,13 @@ import pandas as pd
 
 def user_activity(activity: pd.DataFrame) -> pd.DataFrame:
     activity["activity_date"] = pd.to_datetime(activity["activity_date"])
-    user_in_range = activity[activity["activity_date"] > "2019-06-27"]
-    group_data = user_in_range.groupby(["activity_date", "user_id"]).count()
-    print(group_data, type(group_data))
+    user_in_range = activity[(activity["activity_date"] >
+                             "2019-06-27") & (activity["activity_date"] <= "2019-07-27")]
+    result = user_in_range.groupby(["activity_date"])[
+        "user_id"].nunique().reset_index(name="active_users")
+    result = result.rename(columns={"activity_date": "day"})
+
+    return result
 
 
 data = {
