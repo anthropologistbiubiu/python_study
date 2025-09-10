@@ -2,7 +2,16 @@ import pandas as pd
 
 
 def queries_stats(queries: pd.DataFrame) -> pd.DataFrame:
-    pass
+
+    result = queries.groupby("query_name").apply(
+        lambda g: pd.Series(
+            {"quality": round((g["rating"]/g["position"]).mean(), 2),
+             "poor_query_percentage": round((g["rating"] < 3).mean()*100, 2)
+             }
+        )
+    )
+
+    return result.reset_index()
 
 
 data = {
