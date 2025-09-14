@@ -2,26 +2,38 @@ import pandas as pd
 
 
 def average_selling_price(prices: pd.DataFrame, units_sold: pd.DataFrame) -> pd.DataFrame:
+    if units_sold.empty:
+        return pd.DataFrame({
+            "product_id": prices["product_id"].unique(),
+            "average_selling_price": [0]*len(prices["product_id"].unique()),
+        })
     merge_data = prices.merge(
         units_sold,
         on="product_id",
-        how="right",
+        how="left",
     )
     merge_data = merge_data[(merge_data["purchase_date"] >= merge_data["start_date"])
-                            & (merge_data["purchase_date"] <= merge_data["end_date"])]
-    merge_data["total_price"] = merge_data["price"]*merge_data["units"]
+                            & (merge_data["purchase_date"] <= merge_data["end_date"]) |
+                            (merge_data["purchase_date"].isnull())]
+    merge_data["total_price"] = merge_data["price"] * \
+        merge_data["units"]
+
     agg_data = merge_data.groupby(["product_id"]).agg(
         total_price_sum=("total_price", "sum"),
         total_unit_sum=("units", "sum")
     ).reset_index()
-    agg_data["average_price"] = round(
-        agg_data["total_price_sum"] / agg_data["total_unit_sum"], 2)
+    agg_data["average_price"] = agg_data["total_price_sum"] / \
+        agg_data["total_unit_sum"]
     result = agg_data[["product_id", "average_price"]]
+    result = result.copy()
+    result["average_price"] = result["average_price"].apply(
+        lambda x: 0 if pd.isnull(x) else round(x, 2)
+    )
     return result
 
 
 prices_data = {
-    'product_id': [1, 1, 2, 2],
+    'product_id': [1, 1, 2, 3],
     'start_date': ['2019-02-17', '2019-03-01', '2019-02-01', '2019-02-21'],
     'end_date': ['2019-02-28', '2019-03-22', '2019-02-20', '2019-03-31'],
     'price': [5, 20, 15, 30]
