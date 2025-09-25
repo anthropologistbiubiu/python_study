@@ -26,3 +26,7 @@ movierating = pd.DataFrame({
         "2020-02-22", "2020-02-25"
     ])
 })
+
+
+if __name__ == "__main__":
+    print(movie_rating(movies, users, movierating))
