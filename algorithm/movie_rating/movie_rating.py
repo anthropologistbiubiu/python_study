@@ -2,7 +2,31 @@ import pandas as pd
 
 
 def movie_rating(movies: pd.DataFrame, users: pd.DataFrame, movie_rating: pd.DataFrame) -> pd.DataFrame:
-    pass
+    group_data = movie_rating.groupby(
+        "user_id")["movie_id"].nunique().reset_index(name="cnt")
+    max_cnt = group_data["cnt"].max()
+    top_users = group_data[group_data["cnt"] == max_cnt].reset_index()
+    merge_data = top_users.merge(users, on="user_id")
+    top_user_name = merge_data["name"].min()
+
+    feb_data = movie_rating[
+        (movie_rating["created_at"].dt.year == 2020)
+        & (movie_rating["created_at"].dt.month == 2)
+    ]
+    raing_data = (
+        feb_data.groupby("movie_id")["rating"].mean(
+        ).reset_index(name="avg_rating")
+    )
+
+    max_rating = raing_data["avg_rating"].max()
+
+    top_rating_movies = raing_data[raing_data["avg_rating"] == max_rating]
+
+    top_rating_movies_merge_data = top_rating_movies.merge(
+        movies, on="movie_id")
+    top_rating_movie_name = top_rating_movies_merge_data["title"].min()
+
+    return pd.DataFrame({"result": [top_user_name, top_rating_movie_name]})
 
 
 # 示例数据
