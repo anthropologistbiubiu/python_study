@@ -3,14 +3,17 @@ import pandas as pd
 
 def queries_stats(queries: pd.DataFrame) -> pd.DataFrame:
 
-    result = queries.groupby("query_name").apply(
-        lambda g: pd.Series(
-            {"quality": round((g["rating"]/g["position"]).mean(), 2),
-             "poor_query_percentage": round((g["rating"] < 3).mean()*100, 2)
-             }
-        )
+    queries["ration"] = queries["rating"] / queries["position"]
+    queries["ration"] = queries["rating"] / queries["position"]
+    queries["is_poor"] = queries["rating"] < 3
+    result = queries.groupby("query_name").agg(
+        quality=("ration", "mean"),
+        poor_query_percentage=("is_poor", "mean"),
     )
-
+    result["quality"] = result["quality"].round(2)
+    result["poor_query_percentage"] = (
+        result["poor_query_percentage"]*100).round(2)
+    result = result.sort_values("query_name")
     return result.reset_index()
 
 
