@@ -1,10 +1,13 @@
 
 
-import sys
 import pandas as pd
 
 
 def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    activity['event_date'] = pd.to_datetime(activity['event_date'])
+    result = activity.groupby(
+        "player_id")['event_date'].min().reset_index(name='first_login')
+    return result
     pass
 
 
@@ -17,4 +20,5 @@ if __name__ == "__main__":
         'games_played': [5, 6, 1, 0, 5]
     }
 
-    acitive_df = pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    print(game_analysis(df))
