@@ -1,0 +1,8 @@
+kafka:
+  bootstrap_servers: "106.52.208.15:9092"
+  topic: "log-topic"
+  group_id: "log-group"
+
+elasticsearch:
+  host: "http://106.52.208.15:9200"
+  index: "log-index"
