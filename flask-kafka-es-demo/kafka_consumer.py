@@ -15,8 +15,13 @@ consumer = KafkaConsumer(
 )
 
 print("Consumer started...")
-
-for message in consumer:
-    data = message.value
-    index = data.pop("index", "log-default")  # 如果没传 index 用默认
-    write_to_es(data, index=index)
+try:
+    for message in consumer:
+        data = message.value
+        index = data.pop("index", "log-default")
+        write_to_es(data, index=index)
+except KeyboardInterrupt:
+    print("🛑 Consumer stopped by user (Ctrl+C)")
+finally:
+    consumer.close()
+    print("✅ Consumer connection closed.")
