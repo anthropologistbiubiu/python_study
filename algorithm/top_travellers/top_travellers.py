@@ -5,3 +5,19 @@ import pandas as pd
 
 def top_travellers(users: pd.DataFrame, rides: pd.DataFrame) -> pd.DataFrame:
     pass
+
+
+users = pd.DataFrame({
+    "id": [1, 2, 3, 4, 7, 13, 19],
+    "name": ["Alice", "Bob", "Alex", "Donald", "Lee", "Jonathan", "Elvis"]
+})
+
+rides = pd.DataFrame({
+    "id": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "user_id": [1, 2, 3, 7, 13, 19, 7, 19, 7],
+    "distance": [120, 317, 222, 100, 312, 50, 120, 400, 230]
+})
+
+
+if __name__ == "__main__":
+    print(top_travellers(users, rides))
