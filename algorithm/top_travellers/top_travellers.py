@@ -4,7 +4,19 @@ import pandas as pd
 
 
 def top_travellers(users: pd.DataFrame, rides: pd.DataFrame) -> pd.DataFrame:
-    pass
+    users["user_id"] = users["id"]
+    result = rides.groupby(["user_id"]).agg(
+        travelled_distance=("distance", "sum")
+    )
+    result = users.merge(
+        result,
+        on="user_id",
+        how="left"
+    ).fillna(0)
+    result = result[["name", "travelled_distance"]]
+    result = result.sort_values(["travelled_distance", "name"], ascending=[
+                                False, False]).reset_index(drop=True)
+    return result
 
 
 users = pd.DataFrame({
