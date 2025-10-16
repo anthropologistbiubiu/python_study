@@ -11,8 +11,18 @@ data = {
 df = pd.DataFrame(data)
 
 
-result = df.groupby("sell_date")['product'].apply(
-    lambda x: ','.join(sorted(x))
-).reset_index(drop=True)
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
 
-print(result)
+    activities = activities.drop_duplicates()
+
+    result = activities.groupby("sell_date")['product'].apply(
+        lambda x: ','.join(sorted(x))
+    ).reset_index().rename(columns={"product": "products"})
+
+    result['num_sold'] = result["products"].apply(lambda x: len(x.split(",")))
+    result = result.sort_values("sell_date")
+    result = result[['sell_date', 'num_sold', 'products']]
+    return result
+
+
+print(categorize_products(df))
