@@ -9,3 +9,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+
+result = df.groupby("sell_date")['product'].apply(
+    lambda x: ','.join(sorted(x))
+).reset_index(drop=True)
+
+print(result)
