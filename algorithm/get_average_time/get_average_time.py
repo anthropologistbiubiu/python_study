@@ -4,8 +4,19 @@ import pandas as pd
 
 
 def get_average_time(activity: pd.DataFrame) -> pd.DataFrame:
-    pass
+    start_df = activity[activity["activity_type"] == "start"].copy()
+    end_df = activity[activity["activity_type"] == "end"].copy()
 
+    merged = pd.merge(
+        start_df, end_df, on=["machine_id", "process_id"], suffixes=["_start", "_end"]
+    )
+
+    merged["duration"] = merged["timestamp_end"] - merged["timestamp_start"]
+
+    result = merged.groupby("machine_id")["duration"].mean().round(3).reset_index()
+    result.rename(columns={"duration": "processing_time"}, inplace=True)
+    return result
+    
 
 data = [
     [0, 0, 'start', 0.712],
