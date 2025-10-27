@@ -8,7 +8,8 @@ def users_percentage(users: pd.DataFrame, register: pd.DataFrame) -> pd.DataFram
     register_user["total"] = users["user_id"].nunique()
     register_user["percentage"] = register_user["user_id"] / \
         register_user["total"] * 100
-    register_user["percentage"] = register_user["percentage"].round(2)
+    # register_user["percentage"] = register_user[register_user["user_id"] /
+    #                                            register_user["total"]].round(2)
     register_user = register_user.sort_values(
         by=["percentage", "contest_id"], ascending=[False, True])
     result = register_user[["contest_id", "percentage"]]
