@@ -4,4 +4,4 @@ import pandas as pd
 
 
 def invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:
-    pass
+    return tweets[tweets["content"].str.len() > 15][["tweet_id"]]
