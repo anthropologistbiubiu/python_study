@@ -1,4 +1,13 @@
 import pandas as pd
 
 def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
-    pass
+    employees["bonus"] = employees.apply(
+        lambda row: (
+            0
+            if row["name"].startswith("M") or row["employee_id"] % 2 == 0
+            else row["salary"]
+        ),
+        axis=1,
+    )
+    employees.sort_values(by="employee_id", inplace=True)
+    return employees[["employee_id", "bonus"]]
