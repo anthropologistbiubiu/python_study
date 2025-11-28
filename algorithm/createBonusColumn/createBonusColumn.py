@@ -1,1 +1,18 @@
+import pandas as pd
 
+
+data = {
+    "name": ["Piper", "Grace", "Georgia", "Willow", "Finn", "Thomas"],
+    "salary": [4548, 28150, 1103, 6593, 74576, 24433],
+}
+
+
+def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees["bonus"] = employees["salary"] * 2
+    return employees
+
+
+employees = pd.DataFrame(data)
+
+if __name__ == "__main__":
+    print(createBonusColumn(pd.DataFrame(data)))
